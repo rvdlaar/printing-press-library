@@ -1445,9 +1445,9 @@
       "path": "library/developer-tools/apify",
       "release": {
         "cli_name": "apify-pp-cli",
-        "version": "2026.7.1",
-        "released_at": "2026-07-08T18:21:21Z",
-        "source_commit": "11d7b4ea752c9c8fb8909037133058eb57560cc0"
+        "version": "2026.7.2",
+        "released_at": "2026-07-10T05:44:20Z",
+        "source_commit": "7e8154be29b0de64424015ef3d4d7cc00ad92152"
       },
       "printer": "kjmagnan1s",
       "printer_name": "Kevin Magnan",
@@ -13073,6 +13073,46 @@
       }
     },
     {
+      "name": "pubmed",
+      "category": "other",
+      "api": "pubmed",
+      "description": "Every PubMed E-utility, plus clinical-query refinement, a local article store, and trend/what's-new analytics no other PubMed tool ships.",
+      "search_terms": [
+        "pubmed",
+        "pubmed-pp-cli",
+        "Clinical Queries refinement",
+        "clinical",
+        "Refine a clinical or disease topic to therapy, diagnosis, etiology, prognosis, clinical-prediction, or systematic-review evidence, with open-access, evidence-level, and human/language/age scope filters.",
+        "Article cards in one call",
+        "find",
+        "Search and return clean article cards (title, authors, journal, date, DOI, PMID, evidence-level badge, optional abstract) with open-access and clinical scope filters, in one command.",
+        "Abstract by PMID",
+        "abstract",
+        "Fetch one or more abstracts by PMID as clean structured JSON or plain text.",
+        "Publication trend",
+        "trend",
+        "Publication counts per year (or month) for a topic, ready to chart.",
+        "What's new since last check",
+        "watch",
+        "Return only articles new since the last run of a saved query, using a local seen-PMID store.",
+        "Saved queries",
+        "saved list",
+        "Persist named queries with their filters, re-run them, and see when each last ran.",
+        "Topic landscape",
+        "top",
+        "Facet a query's top results by journal, author, year, or evidence level to show where the literature concentrates.",
+        "PICO clinical question builder",
+        "pico",
+        "Compose a structured Patient/Intervention/Comparison/Outcome question into a precise PubMed query and run it.",
+        "Two-term co-occurrence lens",
+        "cooccur",
+        "Track how often two terms (e.g. a drug and an adverse effect, or a disease and an intervention) appear together in the literature over time."
+      ],
+      "path": "library/other/pubmed",
+      "printer": "rvdlaar",
+      "printer_name": "Rick van de Laar"
+    },
+    {
       "name": "pushover",
       "category": "social-and-messaging",
       "api": "Pushover",
@@ -16462,9 +16502,9 @@
       "path": "library/productivity/techmeme",
       "release": {
         "cli_name": "techmeme-pp-cli",
-        "version": "2026.7.2",
-        "released_at": "2026-07-08T18:21:21Z",
-        "source_commit": "11d7b4ea752c9c8fb8909037133058eb57560cc0"
+        "version": "2026.7.3",
+        "released_at": "2026-07-10T05:45:05Z",
+        "source_commit": "ff3454fa2f8f6b9d65479c6e20c1b3ff3d01ee37"
       },
       "printer": "davemorin",
       "printer_name": "Dave Morin",
