@@ -1,0 +1,1053 @@
+{
+  "dir": "/Users/rick/printing-press/.runstate/openclawdocker-03c20893/runs/20260717-202347-fa8bd25e/working/pubmed-pp-cli",
+  "binary": "/Users/rick/printing-press/.runstate/openclawdocker-03c20893/runs/20260717-202347-fa8bd25e/working/pubmed-pp-cli/pubmed-pp-cli",
+  "level": "full",
+  "verdict": "FAIL",
+  "matrix_size": 56,
+  "passed": 48,
+  "failed": 8,
+  "skipped": 55,
+  "commands": [
+    "abstract",
+    "api",
+    "clinical",
+    "cooccur",
+    "doctor",
+    "efetch",
+    "einfo",
+    "elink",
+    "esearch",
+    "esummary",
+    "feedback list",
+    "find",
+    "pico",
+    "profile delete",
+    "profile list",
+    "profile save",
+    "profile show",
+    "profile use",
+    "saved add",
+    "saved list",
+    "saved remove",
+    "tail",
+    "top",
+    "trend",
+    "watch",
+    "which",
+    "workflow status"
+  ],
+  "tests": [
+    {
+      "command": "abstract",
+      "kind": "help",
+      "args": [
+        "abstract",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Fetch abstracts for one or more PMIDs. efetch only returns XML/MEDLINE upstream;\nthis parses it into clean article records (title, journal, authors, abstract).\n\nUsage:\n  pubmed-pp-cli abstract \u003cpmid\u003e [pmid...] [flags]\n\nExamples:\n  pubmed-pp-cli abstract 42467460 --json\n  pubmed-pp-cli abstract 42467460 40012345 --json\n\nFlags:\n  -h, --help   help for abstract\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "abstract",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [abstract] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "abstract",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [abstract] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "abstract",
+      "kind": "error_path",
+      "args": [
+        "abstract",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 2,
+      "output_sample": "Usage:\n  pubmed-pp-cli abstract \u003cpmid\u003e [pmid...] [flags]\n\nExamples:\n  pubmed-pp-cli abstract 42467460 --json\n  pubmed-pp-cli abstract 42467460 40012345 --json\n\nFlags:\n  -h, --help   help for abstract\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\nError: at least one numeric PMID is required\n"
+    },
+    {
+      "command": "api",
+      "kind": "help",
+      "args": [
+        "api",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Browse and call any API endpoint using the raw interface names.\n\nThe friendly top-level commands cover the most common operations.\nThis command provides access to ALL endpoints for power users and\nagents that need full API coverage.\n\nRun 'api' with no arguments to list all interfaces.\nRun 'api \u003cinterface\u003e' to see that interface's methods.\n\nUsage:\n  pubmed-pp-cli api [interface] [flags]\n\nExamples:\n  # List all available interfaces\n  pubmed-pp-cli api\n\n  # Show methods for a specific interface\n  pubmed-pp-cli api \u003cinterface-name\u003e\n\nFlags:\n  -h, --help   help for api\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "api",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [api] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "api",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [api] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "api",
+      "kind": "error_path",
+      "args": [
+        "api",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 1,
+      "output_sample": "Error: interface \"__printing_press_invalid__\" not found. Run 'pubmed-pp-cli api' to list all interfaces\n"
+    },
+    {
+      "command": "clinical",
+      "kind": "help",
+      "args": [
+        "clinical",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Refine a clinical or disease topic to a specific type of evidence using PubMed's\nClinical Queries filters:\n\n  --category therapy      treatment effectiveness (RCTs, trials)\n  --category diagnosis    diagnostic test accuracy\n  --category etiology     causation / risk factors\n  --category prognosis    disease course / outcomes\n  --category prediction   clinical prediction guides\n  --category reviews      systematic reviews (scope is ignored)\n\n  --scope broad   sensitive: more results, catches most relevant studies\n  --scope narrow  specific: fewer, higher-precision results (default: broad)\n\nFor a general (non-typed) search use 'find' instead.\n\nUsage:\n  pubmed-pp-cli clinical \u003ctopic\u003e [flags]\n\nExamples:\n  pubmed-pp-cli clinical \"atrial fibrillation\" --category therapy --scope narrow --json\n  pubmed-pp-cli clinical \"chest pain\" --category diagnosis --humans --english --json\n  pubmed-pp-cli clinical \"heart failure\" --category reviews --limit 10 --json\n\nFlags:\n      --age string        Restrict to an age group: adolescent, adult, aged, child, infant, middle-aged, newborn\n      --category string   Evidence category: diagnosis, etiology, prediction, prognosis, reviews, therapy\n      --english           Restrict to English-language articles\n      --evidence string   Keep only a study type: meta-analysis, systematic-review, guideline, randomized-controlled-trial, clinical-trial, review, case-report, comparative-study, observational-study\n  -h, --help              help for clinical\n      --humans            Restrict to human studies\n      --limit int         Max article cards to return (default 20)\n      --oa                Restrict to free full-text (open-access) articles\n      --scope string      Search scope: broad (sensitive) | narrow (specific) (default \"broad\")\n      --sex string        Restrict to sex: male | female\n      --species string    Restrict to species: humans | animals\n      --with-abstract     Include each article's abstract text\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "clinical",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [clinical] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "clinical",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [clinical] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "clinical",
+      "kind": "error_path",
+      "args": [
+        "clinical",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 2,
+      "output_sample": "Usage:\n  pubmed-pp-cli clinical \u003ctopic\u003e [flags]\n\nExamples:\n  pubmed-pp-cli clinical \"atrial fibrillation\" --category therapy --scope narrow --json\n  pubmed-pp-cli clinical \"chest pain\" --category diagnosis --humans --english --json\n  pubmed-pp-cli clinical \"heart failure\" --category reviews --limit 10 --json\n\nFlags:\n      --age string        Restrict to an age group: adolescent, adult, aged, child, infant, middle-aged, newborn\n      --category string   Evidence category: diagnosis, etiology, prediction, prognosis, reviews, therapy\n      --english           Restrict to English-language articles\n      --evidence string   Keep only a study type: meta-analysis, systematic-review, guideline, randomized-controlled-trial, clinical-trial, review, case-report, comparative-study, observational-study\n  -h, --help              help for clinical\n      --humans            Restrict to human studies\n      --limit int         Max article cards to return (default 20)\n      --oa                Restrict to free full-text (open-access) articles\n      --scope string      Search scope: broad (sensitive) | narrow (specific) (default \"broad\")\n      --sex string        Restrict to sex: male | female\n      --species string    Restrict to species: humans | animals\n      --with-abstract     Include each article's abstract text\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\nError: --category is required (diagnosis, etiology, prediction, prognosis, reviews, therapy)\n"
+    },
+    {
+      "command": "cooccur",
+      "kind": "help",
+      "args": [
+        "cooccur",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Count PubMed publications for term A, term B, and both together per year — a\ntime series for surfacing drug-safety or disease-intervention signals. Also\nreports the all-time Jaccard overlap of the two terms.\n\nUsage:\n  pubmed-pp-cli cooccur \u003cterm-a\u003e \u003cterm-b\u003e [flags]\n\nExamples:\n  pubmed-pp-cli cooccur \"semaglutide\" \"pancreatitis\" --from 2018 --to 2026 --json\n  pubmed-pp-cli cooccur \"statins\" \"diabetes\" --json\n\nFlags:\n      --from int   First year (default: 9 years before --to)\n  -h, --help       help for cooccur\n      --to int     Last year (default: current year)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "cooccur",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [cooccur] has fewer segments than placeholders (2)"
+    },
+    {
+      "command": "cooccur",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [cooccur] has fewer segments than placeholders (2)"
+    },
+    {
+      "command": "cooccur",
+      "kind": "error_path",
+      "args": [
+        "cooccur",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 2,
+      "output_sample": "Usage:\n  pubmed-pp-cli cooccur \u003cterm-a\u003e \u003cterm-b\u003e [flags]\n\nExamples:\n  pubmed-pp-cli cooccur \"semaglutide\" \"pancreatitis\" --from 2018 --to 2026 --json\n  pubmed-pp-cli cooccur \"statins\" \"diabetes\" --json\n\nFlags:\n      --from int   First year (default: 9 years before --to)\n  -h, --help       help for cooccur\n      --to int     Last year (default: current year)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\nError: two terms are required, e.g. cooccur \"semaglutide\" \"pancreatitis\"\n"
+    },
+    {
+      "command": "doctor",
+      "kind": "help",
+      "args": [
+        "doctor",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Check CLI health\n\nUsage:\n  pubmed-pp-cli doctor [flags]\n\nExamples:\n  pubmed-pp-cli doctor\n  pubmed-pp-cli doctor --json\n  pubmed-pp-cli doctor --fail-on warn\n  pubmed-pp-cli doctor --fail-on stale\n\nFlags:\n      --fail-on string   Exit non-zero for selected health gates. stale: cache freshness plus errors; warn: credential/path warnings plus errors; error: errors only. Default is never.\n  -h, --help             help for doctor\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "doctor",
+      "kind": "happy_path",
+      "args": [
+        "doctor"
+      ],
+      "status": "pass",
+      "output_sample": "  OK Config: ok\n  OK Auth: not required\n  OK Verify Mode: normal operation\n  FAIL API: unreachable: GET /einfo.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi\": read tcp 10.163.136.29:62159-\u003e34.107.134.59:443: read: socket is not connected\n  config_path: /var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-777512200/.config/pubmed-pp-cli/config.toml\n  base_url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils\n  version: 0.0.0-dev\n  Paths:\n    config: /var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-777512200/.config/pubmed-pp-cli (XDG_CONFIG_HOME)\n    data: /var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-777512200/.local/share/pubmed-pp-cli (XDG_DATA_HOME)\n    state: /var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-777512200/.local/state/pubmed-pp-cli (XDG_STATE_HOME)\n    cache: /var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-777512200/.cache/pubmed-pp-cli (XDG_CACHE_HOME)\n"
+    },
+    {
+      "command": "doctor",
+      "kind": "json_fidelity",
+      "args": [
+        "doctor",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"api\": \"unreachable: GET /einfo.fcgi: Get \\\"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi\\\": read tcp 10.163.136.29:62160-\\u003e34.107.134.59:443: read: socket is not connected\",\n  \"auth\": \"not required\",\n  \"base_url\": \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils\",\n  \"config\": \"ok\",\n  \"config_path\": \"/var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-777512200/.config/pubmed-pp-cli/config.toml\",\n  \"paths\": {\n    \"cache\": {\n      \"dir\": \"/var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-777512200/.cache/pubmed-pp-cli\",\n      \"rung\": \"xdg-env\",\n      \"source\": \"XDG_CACHE_HOME\"\n    },\n    \"config\": {\n      \"dir\": \"/var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-777512200/.config/pubmed-pp-cli\",\n      \"rung\": \"xdg-env\",\n      \"source\": \"XDG_CONFIG_HOME\"\n    },\n    \"data\": {\n      \"dir\": \"/var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-777512200/.local/share/pubmed-pp-cli\",\n      \"rung\": \"xdg-env\",\n      \"source\": \"XDG_DATA_HOME\"\n    },\n    \"state\": {\n      \"dir\": \"/var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-777512200/.local/state/pubmed-pp-cli\",\n      \"rung\": \"xdg-env\",\n      \"source\": \"XDG_STATE_HOME\"\n    },\n    \"status\": \"ok\"\n  },\n  \"verify_mode\": \"normal operation\",\n  \"version\": \"0.0.0-dev\"\n}\n"
+    },
+    {
+      "command": "doctor",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "efetch",
+      "kind": "help",
+      "args": [
+        "efetch",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Fetch full records for PMIDs (efetch returns XML or MEDLINE text, not JSON)\n\nUsage:\n  pubmed-pp-cli efetch [flags]\n\nExamples:\n  pubmed-pp-cli efetch --id 550e8400-e29b-41d4-a716-446655440000\n\nFlags:\n      --db string        Entrez database (default pubmed) (default \"pubmed\")\n  -h, --help             help for efetch\n      --id string        Comma-separated PMIDs\n      --retmode string   Response format: text | xml (default \"text\")\n      --rettype string   Record type: abstract | medline | xml | uilist (default \"abstract\")\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "efetch",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "efetch",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "efetch",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "einfo",
+      "kind": "help",
+      "args": [
+        "einfo",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "List Entrez databases, or describe fields/links for one db\n\nUsage:\n  pubmed-pp-cli einfo [flags]\n\nExamples:\n  pubmed-pp-cli einfo\n\nFlags:\n      --db string        Database to describe (omit to list all databases)\n  -h, --help             help for einfo\n      --retmode string   Response format (json) (default \"json\")\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "einfo",
+      "kind": "happy_path",
+      "args": [
+        "einfo"
+      ],
+      "status": "fail",
+      "exit_code": 5,
+      "reason": "exit 5",
+      "output_sample": "Error: API unreachable and no local data. Run 'pubmed-pp-cli sync' to enable offline access.\n\nOriginal error: GET /einfo.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?retmode=json\": read tcp 10.163.136.29:62161-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "einfo",
+      "kind": "json_fidelity",
+      "args": [
+        "einfo",
+        "--json"
+      ],
+      "status": "fail",
+      "exit_code": 5,
+      "reason": "exit 5",
+      "output_sample": "Error: API unreachable and no local data. Run 'pubmed-pp-cli sync' to enable offline access.\n\nOriginal error: GET /einfo.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?retmode=json\": read tcp 10.163.136.29:62162-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "einfo",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "elink",
+      "kind": "help",
+      "args": [
+        "elink",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Find related articles or links for PMIDs\n\nUsage:\n  pubmed-pp-cli elink [flags]\n\nExamples:\n  pubmed-pp-cli elink --id 550e8400-e29b-41d4-a716-446655440000\n\nFlags:\n      --cmd string        Link command: neighbor | neighbor_score | prlinks | llinks\n      --db string         Target database (default \"pubmed\")\n      --dbfrom string     Source database (default pubmed) (default \"pubmed\")\n  -h, --help              help for elink\n      --id string         Comma-separated PMIDs\n      --linkname string   Specific link set, e.g. pubmed_pubmed (related) or pubmed_pmc\n      --retmode string    Response format (json) (default \"json\")\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "elink",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "elink",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "elink",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "esearch",
+      "kind": "help",
+      "args": [
+        "esearch",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Run a raw PubMed query and return PMIDs + count\n\nUsage:\n  pubmed-pp-cli esearch [flags]\n\nExamples:\n  pubmed-pp-cli esearch --term example-value\n\nFlags:\n      --datetype string   Date field to filter on: pdat (publication) | edat (entrez) | mdat (modified)\n      --db string         Entrez database (default pubmed) (default \"pubmed\")\n  -h, --help              help for esearch\n      --maxdate string    Latest date, YYYY/MM/DD or YYYY\n      --mindate string    Earliest date, YYYY/MM/DD or YYYY\n      --reldate int       Restrict to items added within the last N days\n      --retmax int        Max PMIDs to return (0-10000) (default 20)\n      --retmode string    Response format (json) (default \"json\")\n      --retstart int      Offset into the result set for paging\n      --sort string       Sort order: relevance | pub_date | Author | JournalName\n      --term string       PubMed query, e.g. 'atrial fibrillation AND anticoagulation'\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "esearch",
+      "kind": "happy_path",
+      "args": [
+        "esearch",
+        "--term",
+        "example-value"
+      ],
+      "status": "fail",
+      "exit_code": 5,
+      "reason": "exit 5",
+      "output_sample": "Error: API unreachable and no local data. Run 'pubmed-pp-cli sync' to enable offline access.\n\nOriginal error: GET /esearch.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed\u0026retmax=20\u0026retmode=json\u0026term=example-value\": read tcp 10.163.136.29:62163-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "esearch",
+      "kind": "json_fidelity",
+      "args": [
+        "esearch",
+        "--term",
+        "example-value",
+        "--json"
+      ],
+      "status": "fail",
+      "exit_code": 5,
+      "reason": "exit 5",
+      "output_sample": "Error: API unreachable and no local data. Run 'pubmed-pp-cli sync' to enable offline access.\n\nOriginal error: GET /esearch.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed\u0026retmax=20\u0026retmode=json\u0026term=example-value\": read tcp 10.163.136.29:62164-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "esearch",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "esummary",
+      "kind": "help",
+      "args": [
+        "esummary",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Get document summaries for one or more PMIDs\n\nUsage:\n  pubmed-pp-cli esummary [flags]\n\nExamples:\n  pubmed-pp-cli esummary --id 42467460\n\nFlags:\n      --db string        Entrez database (default pubmed) (default \"pubmed\")\n  -h, --help             help for esummary\n      --id string        Comma-separated PMIDs, e.g. 42467460,40012345\n      --retmode string   Response format (json) (default \"json\")\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "esummary",
+      "kind": "happy_path",
+      "args": [
+        "esummary",
+        "--id",
+        "42467460"
+      ],
+      "status": "fail",
+      "exit_code": 5,
+      "reason": "exit 5",
+      "output_sample": "Error: API unreachable and no local data. Run 'pubmed-pp-cli sync' to enable offline access.\n\nOriginal error: GET /esummary.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed\u0026id=42467460\u0026retmode=json\": read tcp 10.163.136.29:62165-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "esummary",
+      "kind": "json_fidelity",
+      "args": [
+        "esummary",
+        "--id",
+        "42467460",
+        "--json"
+      ],
+      "status": "fail",
+      "exit_code": 5,
+      "reason": "exit 5",
+      "output_sample": "Error: API unreachable and no local data. Run 'pubmed-pp-cli sync' to enable offline access.\n\nOriginal error: GET /esummary.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed\u0026id=42467460\u0026retmode=json\": read tcp 10.163.136.29:62166-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "esummary",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "feedback list",
+      "kind": "help",
+      "args": [
+        "feedback",
+        "list",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "List recent feedback entries\n\nUsage:\n  pubmed-pp-cli feedback list [flags]\n\nExamples:\n  pubmed-pp-cli feedback list\n  pubmed-pp-cli feedback list --limit 5\n  pubmed-pp-cli feedback list --json\n\nFlags:\n  -h, --help        help for list\n      --limit int   Maximum number of recent entries to return (default 20)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "feedback list",
+      "kind": "happy_path",
+      "args": [
+        "feedback",
+        "list"
+      ],
+      "status": "pass"
+    },
+    {
+      "command": "feedback list",
+      "kind": "json_fidelity",
+      "args": [
+        "feedback",
+        "list",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "[]\n"
+    },
+    {
+      "command": "feedback list",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "find",
+      "kind": "help",
+      "args": [
+        "find",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Search PubMed and return ready-to-render article cards (title, authors, journal,\ndate, DOI, PMID, evidence-level badge, optional abstract) in a single command.\n\nUse this for a general literature search. For evidence of a specific clinical\ntype (therapy, diagnosis, etc.) use 'clinical' instead.\n\nUsage:\n  pubmed-pp-cli find \u003cquery\u003e [flags]\n\nExamples:\n  pubmed-pp-cli find \"semaglutide heart failure\" --limit 10 --json\n  pubmed-pp-cli find \"long covid\" --oa --humans --with-abstract --json\n  pubmed-pp-cli find \"atrial fibrillation\" --evidence randomized-controlled-trial --json\n\nFlags:\n      --age string        Restrict to an age group: adolescent, adult, aged, child, infant, middle-aged, newborn\n      --english           Restrict to English-language articles\n      --evidence string   Keep only a study type: meta-analysis, systematic-review, guideline, randomized-controlled-trial, clinical-trial, review, case-report, comparative-study, observational-study\n  -h, --help              help for find\n      --humans            Restrict to human studies\n      --limit int         Max article cards to return (default 20)\n      --oa                Restrict to free full-text (open-access) articles\n      --sex string        Restrict to sex: male | female\n      --sort string       Sort order: relevance | pub_date | Author | JournalName\n      --species string    Restrict to species: humans | animals\n      --with-abstract     Include each article's abstract text\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "find",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [find] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "find",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [find] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "find",
+      "kind": "error_path",
+      "args": [
+        "find",
+        "__printing_press_invalid__",
+        "--json"
+      ],
+      "status": "pass",
+      "exit_code": 5,
+      "output_sample": "Error: GET /esearch.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed\u0026retmax=20\u0026retmode=json\u0026term=__printing_press_invalid__\u0026tool=pubmed-pp-cli\": read tcp 10.163.136.29:62167-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "pico",
+      "kind": "help",
+      "args": [
+        "pico",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Build an evidence-based-medicine question from its components and search PubMed:\n\n  --patient       the population or problem (e.g. \"type 2 diabetes\")\n  --intervention  the intervention or exposure (e.g. \"SGLT2 inhibitor\")\n  --comparison    the comparator (optional, e.g. \"metformin\")\n  --outcome       the outcome (e.g. \"cardiovascular mortality\")\n\nAt least a patient or intervention is required.\n\nUsage:\n  pubmed-pp-cli pico [flags]\n\nExamples:\n  pubmed-pp-cli pico --patient \"type 2 diabetes\" --intervention \"SGLT2 inhibitor\" --outcome \"cardiovascular mortality\" --json\n  pubmed-pp-cli pico --patient \"heart failure\" --intervention \"sacubitril valsartan\" --comparison \"enalapril\" --json\n\nFlags:\n      --comparison string     Comparator (C, optional)\n      --english               Restrict to English-language articles\n  -h, --help                  help for pico\n      --humans                Restrict to human studies\n      --intervention string   Intervention or exposure (I)\n      --limit int             Max article cards to return (default 20)\n      --outcome string        Outcome (O)\n      --patient string        Population or problem (P)\n      --with-abstract         Include each article's abstract text\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "pico",
+      "kind": "happy_path",
+      "args": [
+        "pico",
+        "--patient",
+        "type 2 diabetes",
+        "--intervention",
+        "SGLT2 inhibitor",
+        "--outcome",
+        "cardiovascular mortality",
+        "--json"
+      ],
+      "status": "fail",
+      "exit_code": 5,
+      "reason": "exit 5",
+      "output_sample": "Error: GET /esearch.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed\u0026retmax=20\u0026retmode=json\u0026term=%28type+2+diabetes%29+AND+%28SGLT2+inhibitor%29+AND+%28cardiovascular+mortality%29\u0026tool=pubmed-pp-cli\": read tcp 10.163.136.29:62168-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "pico",
+      "kind": "json_fidelity",
+      "args": [
+        "pico",
+        "--patient",
+        "type 2 diabetes",
+        "--intervention",
+        "SGLT2 inhibitor",
+        "--outcome",
+        "cardiovascular mortality",
+        "--json"
+      ],
+      "status": "fail",
+      "exit_code": 5,
+      "reason": "exit 5",
+      "output_sample": "Error: GET /esearch.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed\u0026retmax=20\u0026retmode=json\u0026term=%28type+2+diabetes%29+AND+%28SGLT2+inhibitor%29+AND+%28cardiovascular+mortality%29\u0026tool=pubmed-pp-cli\": read tcp 10.163.136.29:62169-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "pico",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "profile delete",
+      "kind": "help",
+      "args": [
+        "profile",
+        "delete",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Remove a profile\n\nUsage:\n  pubmed-pp-cli profile delete \u003cname\u003e [flags]\n\nExamples:\n  pubmed-pp-cli profile delete my-defaults --yes\n  pubmed-pp-cli profile delete old-profile --yes --json\n\nFlags:\n  -h, --help   help for delete\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "profile delete",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile delete",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile delete",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "mutating command; error_path would call live API without --dry-run"
+    },
+    {
+      "command": "profile delete",
+      "kind": "error_path_real",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile list",
+      "kind": "help",
+      "args": [
+        "profile",
+        "list",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "List saved profiles\n\nUsage:\n  pubmed-pp-cli profile list [flags]\n\nExamples:\n  pubmed-pp-cli profile list\n  pubmed-pp-cli profile list --json\n\nFlags:\n  -h, --help   help for list\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "profile list",
+      "kind": "happy_path",
+      "args": [
+        "profile",
+        "list"
+      ],
+      "status": "pass",
+      "output_sample": "NAME  FIELDS  DESCRIPTION\n"
+    },
+    {
+      "command": "profile list",
+      "kind": "json_fidelity",
+      "args": [
+        "profile",
+        "list",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "[]\n"
+    },
+    {
+      "command": "profile list",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "profile save",
+      "kind": "help",
+      "args": [
+        "profile",
+        "save",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Captures every flag explicitly set on the invocation and stores\nthem under \u003cname\u003e. To update an existing profile, run save again; the\nentry is replaced.\n\nTo avoid creating empty profiles, at least one non-default flag must be\npresent (other than --profile, --config, and --home, which are never\ncaptured: they control profile/config resolution and would never apply).\n\nUsage:\n  pubmed-pp-cli profile save \u003cname\u003e [--\u003cflag\u003e \u003cvalue\u003e ...] [flags]\n\nExamples:\n  pubmed-pp-cli profile save my-defaults --json --compact\n  pubmed-pp-cli profile save tonight-defaults --region US\n\nFlags:\n      --description string   Short description shown in 'profile list'\n  -h, --help                 help for save\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "profile save",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile save",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile save",
+      "kind": "error_path",
+      "args": [
+        "profile",
+        "save",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 1,
+      "output_sample": "Error: no non-default flags set - pass at least one flag to save into \"__printing_press_invalid__\"\n"
+    },
+    {
+      "command": "profile show",
+      "kind": "help",
+      "args": [
+        "profile",
+        "show",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Show a profile's values as JSON\n\nUsage:\n  pubmed-pp-cli profile show \u003cname\u003e [flags]\n\nExamples:\n  pubmed-pp-cli profile show my-defaults\n  pubmed-pp-cli profile show tonight-defaults --json\n\nFlags:\n  -h, --help   help for show\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "profile show",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile show",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile show",
+      "kind": "error_path",
+      "args": [
+        "profile",
+        "show",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 1,
+      "output_sample": "Error: profile \"__printing_press_invalid__\" not found\n"
+    },
+    {
+      "command": "profile use",
+      "kind": "help",
+      "args": [
+        "profile",
+        "use",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Print the flag values a profile will apply (does not execute anything)\n\nUsage:\n  pubmed-pp-cli profile use \u003cname\u003e [flags]\n\nExamples:\n  pubmed-pp-cli profile use my-defaults\n  pubmed-pp-cli profile use tonight-defaults --json\n\nFlags:\n  -h, --help   help for use\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "profile use",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile use",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile use",
+      "kind": "error_path",
+      "args": [
+        "profile",
+        "use",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 1,
+      "output_sample": "Error: profile \"__printing_press_invalid__\" not found\n"
+    },
+    {
+      "command": "saved add",
+      "kind": "help",
+      "args": [
+        "saved",
+        "add",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Save a named query. The name is a short handle; the query is the full PubMed\nterm (quote it if it contains spaces or boolean operators). Changing the term\nresets the watch baseline.\n\nUsage:\n  pubmed-pp-cli saved add \u003cname\u003e \u003cquery\u003e [flags]\n\nExamples:\n  pubmed-pp-cli saved add af-anticoag \"atrial fibrillation AND anticoagulation\" --json\n\nFlags:\n  -h, --help   help for add\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "saved add",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [saved add] has fewer segments than placeholders (2)"
+    },
+    {
+      "command": "saved add",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [saved add] has fewer segments than placeholders (2)"
+    },
+    {
+      "command": "saved add",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "mutating command; error_path would call live API without --dry-run"
+    },
+    {
+      "command": "saved add",
+      "kind": "error_path_real",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [saved add] has fewer segments than placeholders (2)"
+    },
+    {
+      "command": "saved list",
+      "kind": "help",
+      "args": [
+        "saved",
+        "list",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "List saved queries and when each last ran\n\nUsage:\n  pubmed-pp-cli saved list [flags]\n\nExamples:\n  pubmed-pp-cli saved list --json\n\nFlags:\n  -h, --help   help for list\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "saved list",
+      "kind": "happy_path",
+      "args": [
+        "saved",
+        "list",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "[]\n"
+    },
+    {
+      "command": "saved list",
+      "kind": "json_fidelity",
+      "args": [
+        "saved",
+        "list",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "[]\n"
+    },
+    {
+      "command": "saved list",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "saved remove",
+      "kind": "help",
+      "args": [
+        "saved",
+        "remove",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Delete a saved query\n\nUsage:\n  pubmed-pp-cli saved remove \u003cname\u003e [flags]\n\nExamples:\n  pubmed-pp-cli saved remove af-anticoag --json\n\nFlags:\n  -h, --help   help for remove\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "saved remove",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "saved remove",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "saved remove",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "mutating command; error_path would call live API without --dry-run"
+    },
+    {
+      "command": "saved remove",
+      "kind": "error_path_real",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "tail",
+      "kind": "help",
+      "args": [
+        "tail",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Tail streams live data changes by polling the API at configurable intervals.\nEvents are emitted as NDJSON to stdout for piping to other tools.\nGracefully shuts down on SIGTERM/SIGINT.\n\nNote: For APIs with WebSocket or SSE support, a future version will use\nnative streaming instead of polling.\n\nUsage:\n  pubmed-pp-cli tail [resource] [flags]\n\nExamples:\n  # Tail all changes every 10 seconds\n  pubmed-pp-cli tail --interval 10s\n\n  # Tail a specific resource\n  pubmed-pp-cli tail messages --interval 5s\n\n  # Pipe to jq for filtering\n  pubmed-pp-cli tail events --interval 30s | jq 'select(.type == \"error\")'\n\nFlags:\n      --follow              Keep running (set --follow=false for single poll) (default true)\n  -h, --help                help for tail\n      --interval duration   Poll interval (default 10s)\n      --resource string     Resource type to tail\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "tail",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [tail] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "tail",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [tail] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "tail",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no-error-path-probe annotation"
+    },
+    {
+      "command": "top",
+      "kind": "help",
+      "args": [
+        "top",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Run a query, sample the top results, and count them by a chosen dimension to\nshow where the literature concentrates:\n\n  --by journal    leading journals\n  --by author     most-published authors\n  --by year       counts per publication year\n  --by evidence   distribution of study types\n\nThe query can be a positional argument or the --query flag.\n\nUsage:\n  pubmed-pp-cli top \u003cquery\u003e [flags]\n\nExamples:\n  pubmed-pp-cli top \"long covid\" --by journal --limit 15 --json\n  pubmed-pp-cli top \"CAR-T therapy\" --by author --json\n\nFlags:\n      --by string      Facet dimension: journal | author | year | evidence (default \"journal\")\n  -h, --help           help for top\n      --limit int      Max buckets to return (default 15)\n      --query string   Query to facet (alternative to the positional argument)\n      --sample int     How many top results to sample for faceting (default 100)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "top",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [top] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "top",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [top] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "top",
+      "kind": "error_path",
+      "args": [
+        "top",
+        "--query",
+        "__printing_press_invalid__",
+        "--json"
+      ],
+      "status": "pass",
+      "exit_code": 5,
+      "output_sample": "Error: GET /esearch.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed\u0026retmax=25\u0026retmode=json\u0026term=__printing_press_invalid__\u0026tool=pubmed-pp-cli\": read tcp 10.163.136.29:62170-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "trend",
+      "kind": "help",
+      "args": [
+        "trend",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Count PubMed publications per year for a topic across a date range — a\nready-to-chart time series of research attention on a disease or intervention.\n\nUsage:\n  pubmed-pp-cli trend \u003cquery\u003e [flags]\n\nExamples:\n  pubmed-pp-cli trend \"CAR-T therapy\" --from 2015 --to 2026 --json\n  pubmed-pp-cli trend \"long covid\" --from 2020 --json\n\nFlags:\n      --from int   First year (default: 9 years before --to)\n  -h, --help       help for trend\n      --to int     Last year (default: current year)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "trend",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [trend] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "trend",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [trend] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "trend",
+      "kind": "error_path",
+      "args": [
+        "trend",
+        "__printing_press_invalid__",
+        "--json"
+      ],
+      "status": "pass",
+      "exit_code": 5,
+      "output_sample": "Error: GET /esearch.fcgi: Get \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed\u0026retmax=0\u0026retmode=json\u0026term=%28__printing_press_invalid__%29+AND+%28%222024%2F01%2F01%22%5BDate+-+Publication%5D+%3A+%222024%2F12%2F31%22%5BDate+-+Publication%5D%29\u0026tool=pubmed-pp-cli\": read tcp 10.163.136.29:62171-\u003e34.107.134.59:443: read: socket is not connected\n"
+    },
+    {
+      "command": "watch",
+      "kind": "help",
+      "args": [
+        "watch",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Run a query and return only the articles not seen on the previous watch run,\ntracking seen PMIDs in a local store. Pass a saved-query name (see 'saved') or\nan ad-hoc query string. The first run establishes the baseline and reports the\ncurrent top results as new.\n\nUsage:\n  pubmed-pp-cli watch \u003cquery-or-saved-name\u003e [flags]\n\nExamples:\n  pubmed-pp-cli watch \"sepsis biomarkers\" --json\n  pubmed-pp-cli watch af-anticoag --json\n\nFlags:\n  -h, --help        help for watch\n      --limit int   Max recent articles to check for new entries (default 50)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "watch",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [watch] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "watch",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [watch] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "watch",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no-error-path-probe annotation"
+    },
+    {
+      "command": "which",
+      "kind": "help",
+      "args": [
+        "which",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "which resolves a natural-language capability query (for example, \"search messages\" or \"stale tickets\") to the best matching command from this CLI's curated feature index.\n\nExit codes:\n  0  at least one match found\n  2  no confident match - the query did not score against any indexed capability; fall back to '--help' or 'search' if this CLI has one\n\nUsage:\n  pubmed-pp-cli which [query] [flags]\n\nExamples:\n  pubmed-pp-cli which \"stale tickets\"\n  pubmed-pp-cli which \"bottleneck\"\n  pubmed-pp-cli which --limit 1 \"send message\"\n  pubmed-pp-cli which                                # list the full capability index\n\nFlags:\n  -h, --help        help for which\n      --limit int   Maximum number of matches to return (default 3)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "which",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [which] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "which",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [which] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "which",
+      "kind": "error_path",
+      "args": [
+        "which",
+        "__printing_press_invalid__",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"matches\": []\n}\n"
+    },
+    {
+      "command": "workflow status",
+      "kind": "help",
+      "args": [
+        "workflow",
+        "status",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Show local archive status and sync state for all resources\n\nUsage:\n  pubmed-pp-cli workflow status [flags]\n\nExamples:\n  # Show archive status\n  pubmed-pp-cli workflow status\n\n  # Show status as JSON\n  pubmed-pp-cli workflow status --json\n\nFlags:\n      --db string   SQLite database file path (default: resolved data directory data.db)\n  -h, --help        help for status\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "workflow status",
+      "kind": "happy_path",
+      "args": [
+        "workflow",
+        "status"
+      ],
+      "status": "pass",
+      "output_sample": "No archived data. Add a site-specific sync command to populate the store.\n"
+    },
+    {
+      "command": "workflow status",
+      "kind": "json_fidelity",
+      "args": [
+        "workflow",
+        "status",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{}\n"
+    },
+    {
+      "command": "workflow status",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    }
+  ],
+  "ran_at": "2026-07-17T19:13:34.954835Z"
+}
+Error: live dogfood failed: 8/56 tests failed
+live dogfood failed: 8/56 tests failed

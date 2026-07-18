@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-07-17T20:53:37.424062Z",
+  "printing_press_version": "4.28.0",
+  "api_name": "pubmed",
+  "cli_name": "pubmed-pp-cli",
+  "spec_path": "pubmed-spec.yaml",
+  "run_id": "20260717-202347-fa8bd25e",
+  "novel_features": [
+    {
+      "name": "Clinical Queries refinement",
+      "command": "clinical",
+      "description": "Refine a clinical or disease topic to therapy, diagnosis, etiology, prognosis, clinical-prediction, or systematic-review evidence, with open-access, evidence-level, and human/language/age scope filters."
+    },
+    {
+      "name": "Article cards in one call",
+      "command": "find",
+      "description": "Search and return clean article cards (title, authors, journal, date, DOI, PMID, evidence-level badge, optional abstract) with open-access and clinical scope filters, in one command."
+    },
+    {
+      "name": "Abstract by PMID",
+      "command": "abstract",
+      "description": "Fetch one or more abstracts by PMID as clean structured JSON or plain text."
+    },
+    {
+      "name": "Publication trend",
+      "command": "trend",
+      "description": "Publication counts per year (or month) for a topic, ready to chart."
+    },
+    {
+      "name": "What's new since last check",
+      "command": "watch",
+      "description": "Return only articles new since the last run of a saved query, using a local seen-PMID store."
+    },
+    {
+      "name": "Saved queries",
+      "command": "saved list",
+      "description": "Persist named queries with their filters, re-run them, and see when each last ran."
+    },
+    {
+      "name": "Topic landscape",
+      "command": "top",
+      "description": "Facet a query's top results by journal, author, year, or evidence level to show where the literature concentrates."
+    },
+    {
+      "name": "PICO clinical question builder",
+      "command": "pico",
+      "description": "Compose a structured Patient/Intervention/Comparison/Outcome question into a precise PubMed query and run it."
+    },
+    {
+      "name": "Two-term co-occurrence lens",
+      "command": "cooccur",
+      "description": "Track how often two terms (e.g. a drug and an adverse effect, or a disease and an intervention) appear together in the literature over time."
+    }
+  ]
+}

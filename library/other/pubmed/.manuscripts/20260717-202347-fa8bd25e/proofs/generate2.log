@@ -1,0 +1,13 @@
+PASS go mod tidy
+PASS ensure safe golang.org/x/net
+PASS govulncheck ./...
+PASS go vet ./...
+PASS go build ./...
+PASS build runnable binary
+PASS pubmed-pp-cli --help
+PASS pubmed-pp-cli version
+FAIL pubmed-pp-cli doctor
+Error: validating generated project: gate "pubmed-pp-cli doctor" failed: timed out after 15s
+network error (Get "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi": net/http: TLS handshake timeout), retrying in 1s (attempt 1/3)
+validating generated project: gate "pubmed-pp-cli doctor" failed: timed out after 15s
+network error (Get "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi": net/http: TLS handshake timeout), retrying in 1s (attempt 1/3)

@@ -1,0 +1,167 @@
+
+=== verify ===
+Runtime Verification: /Users/rick/printing-press/.runstate/openclawdocker-03c20893/runs/20260717-202347-fa8bd25e/working/pubmed-pp-cli/pubmed-pp-cli
+Mode: mock
+
+COMMAND                        KIND         HELP   DRY-RUN  EXEC     SCORE
+abstract                       read         PASS   PASS     FAIL     2/3
+agent-context                  read         PASS   PASS     PASS     3/3
+api                            local        PASS   PASS     PASS     3/3
+clinical                       read         PASS   PASS     FAIL     2/3
+cooccur                        read         PASS   PASS     PASS     3/3
+doctor                         local        PASS   PASS     PASS     3/3
+efetch                         read         PASS   PASS     FAIL     2/3
+einfo                          read         PASS   PASS     PASS     3/3
+elink                          read         PASS   PASS     FAIL     2/3
+esearch                        read         PASS   PASS     FAIL     2/3
+esummary                       read         PASS   PASS     FAIL     2/3
+feedback                       read         PASS   PASS     PASS     3/3
+find                           read         PASS   PASS     PASS     3/3
+pico                           read         PASS   PASS     FAIL     2/3
+profile                        read         PASS   PASS     FAIL     2/3
+saved                          read         PASS   PASS     FAIL     2/3
+tail                           data-layer   PASS   PASS     PASS     3/3
+top                            read         PASS   PASS     PASS     3/3
+trend                          read         PASS   PASS     PASS     3/3
+watch                          read         PASS   PASS     PASS     3/3
+which                          read         PASS   PASS     PASS     3/3
+workflow                       read         PASS   PASS     FAIL     2/3
+
+Path-Param Probes (nested commands with <positional> args):
+  PASS profile delete
+  PASS profile save
+  PASS profile show
+  PASS profile use
+  PASS saved add
+  PASS saved remove
+
+Data Pipeline: SKIP (CLI has no sync command)
+Pass Rate: 100% (28/28 passed, 0 critical)
+Verdict: PASS
+
+=== validate-narrative ===
+OK: 8 narrative commands resolved and full examples passed
+
+=== dogfood ===
+dogfood: using spec /Users/rick/printing-press/.runstate/openclawdocker-03c20893/runs/20260717-202347-fa8bd25e/pubmed-spec.yaml (--spec)
+Dogfood Report: pubmed-pp-cli
+================================
+
+Path Validity:     0/0 valid (SKIP)
+  Detail: internal-yaml spec: paths validated at parse time
+
+Auth Protocol:     MATCH
+  Generated: Uses "unknown" prefix
+  Detail: no bot/bearer/basic scheme detected
+
+OAuth Scope Cover: 0/0 endpoints covered (SKIP)
+  Detail: no OAuth-scoped endpoints in spec
+
+Dead Flags:        0 dead (PASS)
+
+Dead Functions:    0 dead (PASS)
+
+Data Pipeline:     PARTIAL
+  Sync: uses generic Upsert only
+  Search: uses generic Search only or direct SQL
+  Domain tables: 1
+
+Examples:          10/10 commands have examples (PASS)
+
+Novel Features:    9/9 survived (PASS)
+
+MCP Surface:       PASS (MCP surface mirrors the Cobra tree at runtime)
+
+Verdict: FAIL
+  - sync uses generic Upsert only
+  - 9/9 novel features missing data-source strategy: clinical (clinical.go) — missing // pp:data-source <auto|local|live|computed> annotation; find (find.go) — missing // pp:data-source <auto|local|live|computed> annotation; abstract (abstract.go) — missing // pp:data-source <auto|local|live|computed> annotation; trend (trend.go) — missing // pp:data-source <auto|local|live|computed> annotation; watch (watch.go) — missing // pp:data-source <auto|local|live|computed> annotation; saved list (saved_list.go) — missing // pp:data-source <auto|local|live|computed> annotation; top (top.go) — missing // pp:data-source <auto|local|live|computed> annotation; pico (pico.go) — missing // pp:data-source <auto|local|live|computed> annotation; cooccur (cooccur.go) — missing // pp:data-source <auto|local|live|computed> annotation
+  - 1 source client file(s) without rate-limit handling: internal/eutils/eutils.go — outbound HTTP without rate limiter or typed 429 handling
+  - pure-logic packages with no tests: savedq
+
+=== workflow-verify ===
+Workflow Verification: pubmed-pp-cli
+================================
+
+Overall Verdict: workflow-pass
+  - no workflow manifest found, skipping
+
+=== apify-audit ===
+Apify Actor Audit
+=================
+
+No Apify actor references found.
+
+Verdict: pass
+  - no Apify actor references found, skipping
+
+=== verify-skill ===
+=== pubmed-pp-cli ===
+  ✓ All checks passed (flag-names, flag-commands, positional-args, shell-var-quotes, unknown-command)
+
+=== scorecard ===
+Quality Scorecard: pubmed
+
+  Output Modes         10/10
+  Auth                 10/10
+  Error Handling       8/10
+  Terminal UX          10/10
+  README               10/10
+  Doctor               10/10
+  Agent Native         10/10
+  MCP Quality          7/10
+  MCP Desc Quality     10/10
+  MCP Token Efficiency 7/10
+  MCP Remote Transport 10/10
+  MCP Tool Design      N/A
+  MCP Surface Strategy N/A
+  Local Cache          10/10
+  Cache Freshness      3/10
+  Breadth              7/10
+  Vision               6/10
+  Workflows            10/10
+  Insight              0/10
+  Agent Workflow       9/10
+
+  Domain Correctness
+  Path Validity           10/10
+  Auth Protocol           N/A
+  Data Pipeline Integrity 10/10
+  Sync Correctness        10/10
+  Live API Verification   N/A
+  Type Fidelity           5/5
+  Dead Code               5/5
+
+  Total: 90/100 - Grade A
+  Note: omitted from denominator: mcp_tool_design, mcp_surface_strategy, auth_protocol, live_api_verification
+
+Sample Output Probe (live command sample)
+  Binary refresh: no_stage (no staged binary found)
+  Passed: 1/9  (11% pass rate, 0 skipped)
+  Failures:
+    - Clinical Queries refinement: exit 5: network error (Get "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=20&retmode=json&term=%28atrial+fibrillation%29+AND+%28randomized+controlled+trial%5BPublication+Type%5D+OR+%28randomized%5BTitle%2FAbstract%5D+AND+controlled%5BTitle%2FAbstract%5D+AND+trial%5BTitle%2FAbst...
+    - Article cards in one call: exit 5: network error (Get "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=10&retmode=json&term=%28semaglutide+heart+failure%29+AND+%28humans%5BMeSH+Terms%5D%29+AND+%28free+full+text%5Bsb%5D%29&tool=pubmed-pp-cli": read tcp 10.163.136.29:62034->34.107.134.59:443: read: socket is...
+    - Abstract by PMID: exit 5: network error (Get "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=42467460&retmode=json&tool=pubmed-pp-cli": read tcp 10.163.136.29:62033->34.107.134.59:443: read: socket is not connected), retrying in 1s (attempt 1/3)
+network error (Get "https://eutils.ncbi.nlm.nih.gov/en...
+    - Publication trend: exit 5: network error (Get "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=0&retmode=json&term=%28CAR-T+therapy%29+AND+%28%222015%2F01%2F01%22%5BDate+-+Publication%5D+%3A+%222015%2F12%2F31%22%5BDate+-+Publication%5D%29&tool=pubmed-pp-cli": read tcp 10.163.136.29:62031->34.107.13...
+    - What's new since last check: exit 5: network error (Get "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=50&retmode=json&sort=pub_date&term=sepsis+biomarkers&tool=pubmed-pp-cli": read tcp 10.163.136.29:62048->34.107.134.59:443: read: socket is not connected), retrying in 1s (attempt 1/3)
+network error (Get "...
+    - Topic landscape: exit 5: network error (Get "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=100&retmode=json&term=long+covid&tool=pubmed-pp-cli": read tcp 10.163.136.29:62049->34.107.134.59:443: read: socket is not connected), retrying in 1s (attempt 1/3)
+network error (Get "https://eutils.ncbi....
+    - PICO clinical question builder: exit 5: network error (Get "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=20&retmode=json&term=%28type+2+diabetes%29+AND+%28SGLT2+inhibitor%29+AND+%28cardiovascular+mortality%29&tool=pubmed-pp-cli": read tcp 10.163.136.29:62047->34.107.134.59:443: read: socket is not connected)...
+    - Two-term co-occurrence lens: exit 5: network error (Get "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=0&retmode=json&term=%28semaglutide%29+AND+%28%222018%2F01%2F01%22%5BDate+-+Publication%5D+%3A+%222018%2F12%2F31%22%5BDate+-+Publication%5D%29&tool=pubmed-pp-cli": read tcp 10.163.136.29:62050->34.107.134....
+
+Gaps:
+  - insight scored 0/10 - needs improvement
+
+Shipcheck Summary
+=================
+  LEG               RESULT  EXIT      ELAPSED
+  verify            PASS    0         25.875s
+  validate-narrative  PASS    0         115ms
+  dogfood           PASS    0         1.725s
+  workflow-verify   PASS    0         12ms
+  apify-audit       PASS    0         41ms
+  verify-skill      PASS    0         55ms
+  scorecard         PASS    0         15.046s
+
+Verdict: PASS (7/7 legs passed)

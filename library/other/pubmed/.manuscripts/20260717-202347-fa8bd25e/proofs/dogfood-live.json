@@ -1,0 +1,1664 @@
+{
+  "dir": "/Users/rick/printing-press/.runstate/openclawdocker-03c20893/runs/20260717-202347-fa8bd25e/working/pubmed-pp-cli",
+  "binary": "/Users/rick/printing-press/.runstate/openclawdocker-03c20893/runs/20260717-202347-fa8bd25e/working/pubmed-pp-cli/build/stage/bin/pubmed-pp-cli",
+  "level": "full",
+  "verdict": "FAIL",
+  "matrix_size": 98,
+  "passed": 87,
+  "failed": 11,
+  "skipped": 73,
+  "commands": [
+    "abstract",
+    "api",
+    "clinical",
+    "cooccur",
+    "doctor",
+    "efetch",
+    "einfo",
+    "elink",
+    "esearch",
+    "espell",
+    "esummary",
+    "feedback list",
+    "find",
+    "learnings candidates",
+    "learnings confirm",
+    "learnings forget",
+    "learnings list",
+    "learnings purge",
+    "learnings reject",
+    "learnings stats",
+    "pico",
+    "playbook amend",
+    "playbook list",
+    "profile delete",
+    "profile list",
+    "profile save",
+    "profile show",
+    "profile use",
+    "recall",
+    "saved add",
+    "saved list",
+    "saved remove",
+    "tail",
+    "teach",
+    "teach-lookup",
+    "teach-pattern",
+    "teach-playbook",
+    "top",
+    "trend",
+    "watch",
+    "which",
+    "workflow status"
+  ],
+  "tests": [
+    {
+      "command": "abstract",
+      "kind": "help",
+      "args": [
+        "abstract",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Fetch abstracts for one or more PMIDs. efetch only returns XML/MEDLINE upstream;\nthis parses it into clean article records (title, journal, authors, abstract).\n\nUsage:\n  pubmed-pp-cli abstract \u003cpmid\u003e [pmid...] [flags]\n\nExamples:\n  pubmed-pp-cli abstract 42467460 --json\n  pubmed-pp-cli abstract 42467460 40012345 --json\n\nFlags:\n  -h, --help   help for abstract\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "abstract",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [abstract] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "abstract",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [abstract] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "abstract",
+      "kind": "error_path",
+      "args": [
+        "abstract",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 2,
+      "output_sample": "Usage:\n  pubmed-pp-cli abstract \u003cpmid\u003e [pmid...] [flags]\n\nExamples:\n  pubmed-pp-cli abstract 42467460 --json\n  pubmed-pp-cli abstract 42467460 40012345 --json\n\nFlags:\n  -h, --help   help for abstract\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\nError: at least one numeric PMID is required\n"
+    },
+    {
+      "command": "api",
+      "kind": "help",
+      "args": [
+        "api",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Browse and call any API endpoint using the raw interface names.\n\nThe friendly top-level commands cover the most common operations.\nThis command provides access to ALL endpoints for power users and\nagents that need full API coverage.\n\nRun 'api' with no arguments to list all interfaces.\nRun 'api \u003cinterface\u003e' to see that interface's methods.\n\nUsage:\n  pubmed-pp-cli api [interface] [flags]\n\nExamples:\n  # List all available interfaces\n  pubmed-pp-cli api\n\n  # Show methods for a specific interface\n  pubmed-pp-cli api \u003cinterface-name\u003e\n\nFlags:\n  -h, --help   help for api\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "api",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [api] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "api",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [api] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "api",
+      "kind": "error_path",
+      "args": [
+        "api",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 1,
+      "output_sample": "Error: interface \"__printing_press_invalid__\" not found. Run 'pubmed-pp-cli api' to list all interfaces\n"
+    },
+    {
+      "command": "clinical",
+      "kind": "help",
+      "args": [
+        "clinical",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Refine a clinical or disease topic to a specific type of evidence using PubMed's\nClinical Queries filters:\n\n  --category therapy      treatment effectiveness (RCTs, trials)\n  --category diagnosis    diagnostic test accuracy\n  --category etiology     causation / risk factors\n  --category prognosis    disease course / outcomes\n  --category prediction   clinical prediction guides\n  --category reviews      systematic reviews (scope is ignored)\n\n  --scope broad   sensitive: more results, catches most relevant studies\n  --scope narrow  specific: fewer, higher-precision results (default: broad)\n\nFor a general (non-typed) search use 'find' instead.\n\nUsage:\n  pubmed-pp-cli clinical \u003ctopic\u003e [flags]\n\nExamples:\n  pubmed-pp-cli clinical \"atrial fibrillation\" --category therapy --scope narrow --json\n  pubmed-pp-cli clinical \"chest pain\" --category diagnosis --humans --english --json\n  pubmed-pp-cli clinical \"heart failure\" --category reviews --limit 10 --json\n\nFlags:\n      --age string        Restrict to an age group: adolescent, adult, aged, child, infant, middle-aged, newborn\n      --category string   Evidence category: diagnosis, etiology, prediction, prognosis, reviews, therapy\n      --english           Restrict to English-language articles\n      --evidence string   Keep only a study type: meta-analysis, systematic-review, guideline, randomized-controlled-trial, clinical-trial, review, case-report, comparative-study, observational-study\n  -h, --help              help for clinical\n      --humans            Restrict to human studies\n      --limit int         Max article cards to return (default 20)\n      --oa                Restrict to free full-text (open-access) articles\n      --scope string      Search scope: broad (sensitive) | narrow (specific) (default \"broad\")\n      --sex string        Restrict to sex: male | female\n      --species string    Restrict to species: humans | animals\n      --with-abstract     Include each article's abstract text\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "clinical",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [clinical] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "clinical",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [clinical] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "clinical",
+      "kind": "error_path",
+      "args": [
+        "clinical",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 2,
+      "output_sample": "Usage:\n  pubmed-pp-cli clinical \u003ctopic\u003e [flags]\n\nExamples:\n  pubmed-pp-cli clinical \"atrial fibrillation\" --category therapy --scope narrow --json\n  pubmed-pp-cli clinical \"chest pain\" --category diagnosis --humans --english --json\n  pubmed-pp-cli clinical \"heart failure\" --category reviews --limit 10 --json\n\nFlags:\n      --age string        Restrict to an age group: adolescent, adult, aged, child, infant, middle-aged, newborn\n      --category string   Evidence category: diagnosis, etiology, prediction, prognosis, reviews, therapy\n      --english           Restrict to English-language articles\n      --evidence string   Keep only a study type: meta-analysis, systematic-review, guideline, randomized-controlled-trial, clinical-trial, review, case-report, comparative-study, observational-study\n  -h, --help              help for clinical\n      --humans            Restrict to human studies\n      --limit int         Max article cards to return (default 20)\n      --oa                Restrict to free full-text (open-access) articles\n      --scope string      Search scope: broad (sensitive) | narrow (specific) (default \"broad\")\n      --sex string        Restrict to sex: male | female\n      --species string    Restrict to species: humans | animals\n      --with-abstract     Include each article's abstract text\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\nError: --category is required (diagnosis, etiology, prediction, prognosis, reviews, therapy)\n"
+    },
+    {
+      "command": "cooccur",
+      "kind": "help",
+      "args": [
+        "cooccur",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Count PubMed publications for term A, term B, and both together per year — a\ntime series for surfacing drug-safety or disease-intervention signals. Also\nreports the all-time Jaccard overlap of the two terms.\n\nUsage:\n  pubmed-pp-cli cooccur \u003cterm-a\u003e \u003cterm-b\u003e [flags]\n\nExamples:\n  pubmed-pp-cli cooccur \"semaglutide\" \"pancreatitis\" --from 2018 --to 2026 --json\n  pubmed-pp-cli cooccur \"statins\" \"diabetes\" --json\n\nFlags:\n      --from int   First year (default: 9 years before --to)\n  -h, --help       help for cooccur\n      --to int     Last year (default: current year)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "cooccur",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [cooccur] has fewer segments than placeholders (2)"
+    },
+    {
+      "command": "cooccur",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [cooccur] has fewer segments than placeholders (2)"
+    },
+    {
+      "command": "cooccur",
+      "kind": "error_path",
+      "args": [
+        "cooccur",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 2,
+      "output_sample": "Usage:\n  pubmed-pp-cli cooccur \u003cterm-a\u003e \u003cterm-b\u003e [flags]\n\nExamples:\n  pubmed-pp-cli cooccur \"semaglutide\" \"pancreatitis\" --from 2018 --to 2026 --json\n  pubmed-pp-cli cooccur \"statins\" \"diabetes\" --json\n\nFlags:\n      --from int   First year (default: 9 years before --to)\n  -h, --help       help for cooccur\n      --to int     Last year (default: current year)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\nError: two terms are required, e.g. cooccur \"semaglutide\" \"pancreatitis\"\n"
+    },
+    {
+      "command": "doctor",
+      "kind": "help",
+      "args": [
+        "doctor",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Check CLI health\n\nUsage:\n  pubmed-pp-cli doctor [flags]\n\nExamples:\n  pubmed-pp-cli doctor\n  pubmed-pp-cli doctor --json\n  pubmed-pp-cli doctor --fail-on warn\n  pubmed-pp-cli doctor --fail-on stale\n\nFlags:\n      --fail-on string   Exit non-zero for selected health gates. stale: cache freshness plus errors; warn: credential/path warnings plus errors; error: errors only. Default is never.\n  -h, --help             help for doctor\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "doctor",
+      "kind": "happy_path",
+      "args": [
+        "doctor"
+      ],
+      "status": "pass",
+      "output_sample": "  OK Config: ok\n  OK Auth: not required\n  OK Verify Mode: normal operation\n  OK API: reachable\n  config_path: /var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-1372969795/.config/pubmed-pp-cli/config.toml\n  base_url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils\n  version: 0.0.0-dev\n  Paths:\n    config: /var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-1372969795/.config/pubmed-pp-cli (XDG_CONFIG_HOME)\n    data: /var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-1372969795/.local/share/pubmed-pp-cli (XDG_DATA_HOME)\n    state: /var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-1372969795/.local/state/pubmed-pp-cli (XDG_STATE_HOME)\n    cache: /var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-1372969795/.cache/pubmed-pp-cli (XDG_CACHE_HOME)\n"
+    },
+    {
+      "command": "doctor",
+      "kind": "json_fidelity",
+      "args": [
+        "doctor",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"api\": \"reachable\",\n  \"auth\": \"not required\",\n  \"base_url\": \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils\",\n  \"config\": \"ok\",\n  \"config_path\": \"/var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-1372969795/.config/pubmed-pp-cli/config.toml\",\n  \"paths\": {\n    \"cache\": {\n      \"dir\": \"/var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-1372969795/.cache/pubmed-pp-cli\",\n      \"rung\": \"xdg-env\",\n      \"source\": \"XDG_CACHE_HOME\"\n    },\n    \"config\": {\n      \"dir\": \"/var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-1372969795/.config/pubmed-pp-cli\",\n      \"rung\": \"xdg-env\",\n      \"source\": \"XDG_CONFIG_HOME\"\n    },\n    \"data\": {\n      \"dir\": \"/var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-1372969795/.local/share/pubmed-pp-cli\",\n      \"rung\": \"xdg-env\",\n      \"source\": \"XDG_DATA_HOME\"\n    },\n    \"state\": {\n      \"dir\": \"/var/folders/ph/cbntz9ws2gd2cnsg2dp60_mh0000gn/T/printing-press-subprocess-1372969795/.local/state/pubmed-pp-cli\",\n      \"rung\": \"xdg-env\",\n      \"source\": \"XDG_STATE_HOME\"\n    },\n    \"status\": \"ok\"\n  },\n  \"verify_mode\": \"normal operation\",\n  \"version\": \"0.0.0-dev\"\n}\n"
+    },
+    {
+      "command": "doctor",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "efetch",
+      "kind": "help",
+      "args": [
+        "efetch",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Fetch full records for PMIDs (efetch returns XML or MEDLINE text, not JSON)\n\nUsage:\n  pubmed-pp-cli efetch [flags]\n\nExamples:\n  pubmed-pp-cli efetch --id 550e8400-e29b-41d4-a716-446655440000\n\nFlags:\n      --db string        Entrez database (default pubmed) (default \"pubmed\")\n  -h, --help             help for efetch\n      --id string        Comma-separated PMIDs\n      --retmode string   Response format: text | xml (default \"text\")\n      --rettype string   Record type: abstract | medline | xml | uilist (default \"abstract\")\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "efetch",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "efetch",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "efetch",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "einfo",
+      "kind": "help",
+      "args": [
+        "einfo",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "List Entrez databases, or describe fields/links for one db\n\nUsage:\n  pubmed-pp-cli einfo [flags]\n\nExamples:\n  pubmed-pp-cli einfo\n\nFlags:\n      --db string        Database to describe (omit to list all databases)\n  -h, --help             help for einfo\n      --retmode string   Response format (json) (default \"json\")\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "einfo",
+      "kind": "happy_path",
+      "args": [
+        "einfo"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"meta\": {\n    \"source\": \"live\"\n  },\n  \"results\": {\n    \"header\": {\n      \"type\": \"einfo\",\n      \"version\": \"0.3\"\n    },\n    \"einforesult\": {\n      \"dblist\": [\n        \"pubmed\",\n        \"protein\",\n        \"nuccore\",\n        \"ipg\",\n        \"nucleotide\",\n        \"structure\",\n        \"genome\",\n        \"annotinfo\",\n        \"assembly\",\n        \"bioproject\",\n        \"biosample\",\n        \"blastdbinfo\",\n        \"books\",\n        \"cdd\",\n        \"clinvar\",\n        \"gap\",\n        \"gapplus\",\n        \"grasp\",\n        \"dbvar\",\n        \"gene\",\n        \"gds\",\n        \"geoprofiles\",\n        \"medgen\",\n        \"mesh\",\n        \"nlmcatalog\",\n        \"omim\",\n        \"orgtrack\",\n        \"pmc\",\n        \"proteinclusters\",\n        \"pcassay\",\n        \"protfam\",\n        \"pccompound\",\n        \"pcsubstance\",\n        \"seqannot\",\n        \"snp\",\n        \"sra\",\n        \"taxonomy\",\n        \"biocollections\",\n        \"gtr\"\n      ],\n      \"dbinfo\": []\n    }\n  }\n}\nwarning: 1/1 einfo items returned but not cached locally (no extractable ID field; offline lookup against these rows will be incomplete; live queries unaffected)\n"
+    },
+    {
+      "command": "einfo",
+      "kind": "json_fidelity",
+      "args": [
+        "einfo",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"meta\": {\n    \"source\": \"live\"\n  },\n  \"results\": {\n    \"header\": {\n      \"type\": \"einfo\",\n      \"version\": \"0.3\"\n    },\n    \"einforesult\": {\n      \"dblist\": [\n        \"pubmed\",\n        \"protein\",\n        \"nuccore\",\n        \"ipg\",\n        \"nucleotide\",\n        \"structure\",\n        \"genome\",\n        \"annotinfo\",\n        \"assembly\",\n        \"bioproject\",\n        \"biosample\",\n        \"blastdbinfo\",\n        \"books\",\n        \"cdd\",\n        \"clinvar\",\n        \"gap\",\n        \"gapplus\",\n        \"grasp\",\n        \"dbvar\",\n        \"gene\",\n        \"gds\",\n        \"geoprofiles\",\n        \"medgen\",\n        \"mesh\",\n        \"nlmcatalog\",\n        \"omim\",\n        \"orgtrack\",\n        \"pmc\",\n        \"proteinclusters\",\n        \"pcassay\",\n        \"protfam\",\n        \"pccompound\",\n        \"pcsubstance\",\n        \"seqannot\",\n        \"snp\",\n        \"sra\",\n        \"taxonomy\",\n        \"biocollections\",\n        \"gtr\"\n      ],\n      \"dbinfo\": []\n    }\n  }\n}\nwarning: 1/1 einfo items returned but not cached locally (no extractable ID field; offline lookup against these rows will be incomplete; live queries unaffected)\n"
+    },
+    {
+      "command": "einfo",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "elink",
+      "kind": "help",
+      "args": [
+        "elink",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Find related articles or links for PMIDs\n\nUsage:\n  pubmed-pp-cli elink [flags]\n\nExamples:\n  pubmed-pp-cli elink --id 550e8400-e29b-41d4-a716-446655440000\n\nFlags:\n      --cmd string        Link command: neighbor | neighbor_score | prlinks | llinks\n      --db string         Target database (default \"pubmed\")\n      --dbfrom string     Source database (default pubmed) (default \"pubmed\")\n  -h, --help              help for elink\n      --id string         Comma-separated PMIDs\n      --linkname string   Specific link set, e.g. pubmed_pubmed (related) or pubmed_pmc\n      --retmode string    Response format (json) (default \"json\")\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "elink",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "elink",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "elink",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "esearch",
+      "kind": "help",
+      "args": [
+        "esearch",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Run a raw PubMed query and return PMIDs + count\n\nUsage:\n  pubmed-pp-cli esearch [flags]\n\nExamples:\n  pubmed-pp-cli esearch --term example-value\n\nFlags:\n      --datetype string   Date field to filter on: pdat (publication) | edat (entrez) | mdat (modified)\n      --db string         Entrez database (default pubmed) (default \"pubmed\")\n  -h, --help              help for esearch\n      --maxdate string    Latest date, YYYY/MM/DD or YYYY\n      --mindate string    Earliest date, YYYY/MM/DD or YYYY\n      --reldate int       Restrict to items added within the last N days\n      --retmax int        Max PMIDs to return (0-10000) (default 20)\n      --retmode string    Response format (json) (default \"json\")\n      --retstart int      Offset into the result set for paging\n      --sort string       Sort order: relevance | pub_date | Author | JournalName\n      --term string       PubMed query, e.g. 'atrial fibrillation AND anticoagulation'\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "esearch",
+      "kind": "happy_path",
+      "args": [
+        "esearch",
+        "--term",
+        "example-value"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"meta\": {\n    \"source\": \"live\"\n  },\n  \"results\": {\n    \"header\": {\n      \"type\": \"esearch\",\n      \"version\": \"0.3\"\n    },\n    \"esearchresult\": {\n      \"count\": \"0\",\n      \"retmax\": \"0\",\n      \"retstart\": \"0\",\n      \"idlist\": [],\n      \"translationset\": [],\n      \"querytranslation\": \"example-value\",\n      \"warninglist\": {\n        \"phrasesignored\": [],\n        \"quotedphrasesnotfound\": [\n          \"\\\"example-value\\\"\"\n        ],\n        \"outputmessages\": [\n          \"No items found.\"\n        ]\n      }\n    }\n  }\n}\nwarning: 1/1 esearch items returned but not cached locally (no extractable ID field; offline lookup against these rows will be incomplete; live queries unaffected)\n"
+    },
+    {
+      "command": "esearch",
+      "kind": "json_fidelity",
+      "args": [
+        "esearch",
+        "--term",
+        "example-value",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"meta\": {\n    \"source\": \"live\"\n  },\n  \"results\": {\n    \"header\": {\n      \"type\": \"esearch\",\n      \"version\": \"0.3\"\n    },\n    \"esearchresult\": {\n      \"count\": \"0\",\n      \"retmax\": \"0\",\n      \"retstart\": \"0\",\n      \"idlist\": [],\n      \"translationset\": [],\n      \"querytranslation\": \"example-value\",\n      \"warninglist\": {\n        \"phrasesignored\": [],\n        \"quotedphrasesnotfound\": [\n          \"\\\"example-value\\\"\"\n        ],\n        \"outputmessages\": [\n          \"No items found.\"\n        ]\n      }\n    }\n  }\n}\nwarning: 1/1 esearch items returned but not cached locally (no extractable ID field; offline lookup against these rows will be incomplete; live queries unaffected)\n"
+    },
+    {
+      "command": "esearch",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "espell",
+      "kind": "help",
+      "args": [
+        "espell",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Get spelling-corrected query suggestions (XML response)\n\nUsage:\n  pubmed-pp-cli espell [flags]\n\nExamples:\n  pubmed-pp-cli espell --term example-value\n\nFlags:\n      --db string     Entrez database (default pubmed) (default \"pubmed\")\n  -h, --help          help for espell\n      --term string   Query term to spell-check\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "espell",
+      "kind": "happy_path",
+      "args": [
+        "espell",
+        "--term",
+        "example-value"
+      ],
+      "status": "fail",
+      "exit_code": 4,
+      "reason": "exit 4",
+      "output_sample": "Error: not authenticated or session expired; API returned HTML instead of JSON. \n"
+    },
+    {
+      "command": "espell",
+      "kind": "json_fidelity",
+      "args": [
+        "espell",
+        "--term",
+        "example-value",
+        "--json"
+      ],
+      "status": "fail",
+      "exit_code": 4,
+      "reason": "exit 4",
+      "output_sample": "Error: not authenticated or session expired; API returned HTML instead of JSON. \n"
+    },
+    {
+      "command": "espell",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "esummary",
+      "kind": "help",
+      "args": [
+        "esummary",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Get document summaries for one or more PMIDs\n\nUsage:\n  pubmed-pp-cli esummary [flags]\n\nExamples:\n  pubmed-pp-cli esummary --id 42467460\n\nFlags:\n      --db string        Entrez database (default pubmed) (default \"pubmed\")\n  -h, --help             help for esummary\n      --id string        Comma-separated PMIDs, e.g. 42467460,40012345\n      --retmode string   Response format (json) (default \"json\")\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "esummary",
+      "kind": "happy_path",
+      "args": [
+        "esummary",
+        "--id",
+        "42467460"
+      ],
+      "status": "pass",
+      "output_sample": "{\"meta\":{\"source\":\"live\"},\"results\":{\"header\":{\"type\":\"esummary\",\"version\":\"0.3\"},\"result\":{\"42467460\":{\"articleids\":[{\"idtype\":\"pubmed\",\"idtypen\":1,\"value\":\"42467460\"},{\"idtype\":\"doi\",\"idtypen\":3,\"value\":\"10.1093/heapro/daag098\"},{\"idtype\":\"pii\",\"idtypen\":4,\"value\":\"8736743\"}],\"attributes\":[\"Has Abstract\"],\"authors\":[{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"}],\"availablefromurl\":\"\",\"bookname\":\"\",\"booktitle\":\"\",\"chapter\":\"\",\"doccontriblist\":[],\"docdate\":\"\",\"doctype\":\"citation\",\"edition\":\"\",\"elocationid\":\"pii: daag098. doi: 10.1093/heapro/daag098\",\"epubdate\":\"\",\"essn\":\"1460-2245\",\"fulljournalname\":\"Health promotion international\",\"history\":[{\"date\":\"2026/07/17 12:41\",\"pubstatus\":\"medline\"},{\"date\":\"2026/07/17 12:41\",\"pubstatus\":\"pubmed\"},{\"date\":\"2026/07/17 11:43\",\"pubstatus\":\"entrez\"}],\"issn\":\"0957-4824\",\"issue\":\"4\",\"lang\":[\"eng\"],\"lastauthor\":\"Okan O\",\"locationlabel\":\"\",\"medium\":\"\",\"nlmuniqueid\":\"9008939\",\"pages\":\"\",\"pmcrefcount\":\"\",\"pubdate\":\"2026 Jul 1\",\"publisherlocation\":\"\",\"publishername\":\"\",\"pubstatus\":\"4\",\"pubtype\":[\"Journal Article\"],\"recordstatus\":\"PubMed - in process\",\"references\":[],\"reportnumber\":\"\",\"sortfirstauthor\":\"Meyer M\",\"sortpubdate\":\"2026/07/01 00:00\",\"sorttitle\":\"school principals covid 19 health literacy and its association with mental health international findings from 11 countries in europe and asia\",\"source\":\"Health Promot Int\",\"srccontriblist\":[],\"srcdate\":\"\",\"title\":\"School principals' COVID-19 health literacy and its association with mental health: international findings from 11 countries in Europe and Asia.\",\"uid\":\"42467460\",\"vernaculartitle\":\"\",\"volume\":\"41\"},\"uids\":[\"42467460\"]}}}warning: 1/1 esummary items returned but not cached locally (no extractable ID field; offline lookup against these rows will be incomplete; live queries unaffected)\n"
+    },
+    {
+      "command": "esummary",
+      "kind": "json_fidelity",
+      "args": [
+        "esummary",
+        "--id",
+        "42467460",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\"meta\":{\"source\":\"live\"},\"results\":{\"header\":{\"type\":\"esummary\",\"version\":\"0.3\"},\"result\":{\"42467460\":{\"articleids\":[{\"idtype\":\"pubmed\",\"idtypen\":1,\"value\":\"42467460\"},{\"idtype\":\"doi\",\"idtypen\":3,\"value\":\"10.1093/heapro/daag098\"},{\"idtype\":\"pii\",\"idtypen\":4,\"value\":\"8736743\"}],\"attributes\":[\"Has Abstract\"],\"authors\":[{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"},{\"authtype\":\"Author\",\"clusterid\":\"\",\"name\":\"\u003credacted\u003e\"}],\"availablefromurl\":\"\",\"bookname\":\"\",\"booktitle\":\"\",\"chapter\":\"\",\"doccontriblist\":[],\"docdate\":\"\",\"doctype\":\"citation\",\"edition\":\"\",\"elocationid\":\"pii: daag098. doi: 10.1093/heapro/daag098\",\"epubdate\":\"\",\"essn\":\"1460-2245\",\"fulljournalname\":\"Health promotion international\",\"history\":[{\"date\":\"2026/07/17 12:41\",\"pubstatus\":\"medline\"},{\"date\":\"2026/07/17 12:41\",\"pubstatus\":\"pubmed\"},{\"date\":\"2026/07/17 11:43\",\"pubstatus\":\"entrez\"}],\"issn\":\"0957-4824\",\"issue\":\"4\",\"lang\":[\"eng\"],\"lastauthor\":\"Okan O\",\"locationlabel\":\"\",\"medium\":\"\",\"nlmuniqueid\":\"9008939\",\"pages\":\"\",\"pmcrefcount\":\"\",\"pubdate\":\"2026 Jul 1\",\"publisherlocation\":\"\",\"publishername\":\"\",\"pubstatus\":\"4\",\"pubtype\":[\"Journal Article\"],\"recordstatus\":\"PubMed - in process\",\"references\":[],\"reportnumber\":\"\",\"sortfirstauthor\":\"Meyer M\",\"sortpubdate\":\"2026/07/01 00:00\",\"sorttitle\":\"school principals covid 19 health literacy and its association with mental health international findings from 11 countries in europe and asia\",\"source\":\"Health Promot Int\",\"srccontriblist\":[],\"srcdate\":\"\",\"title\":\"School principals' COVID-19 health literacy and its association with mental health: international findings from 11 countries in Europe and Asia.\",\"uid\":\"42467460\",\"vernaculartitle\":\"\",\"volume\":\"41\"},\"uids\":[\"42467460\"]}}}warning: 1/1 esummary items returned but not cached locally (no extractable ID field; offline lookup against these rows will be incomplete; live queries unaffected)\n"
+    },
+    {
+      "command": "esummary",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "feedback list",
+      "kind": "help",
+      "args": [
+        "feedback",
+        "list",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "List recent feedback entries\n\nUsage:\n  pubmed-pp-cli feedback list [flags]\n\nExamples:\n  pubmed-pp-cli feedback list\n  pubmed-pp-cli feedback list --limit 5\n  pubmed-pp-cli feedback list --json\n\nFlags:\n  -h, --help        help for list\n      --limit int   Maximum number of recent entries to return (default 20)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "feedback list",
+      "kind": "happy_path",
+      "args": [
+        "feedback",
+        "list"
+      ],
+      "status": "pass"
+    },
+    {
+      "command": "feedback list",
+      "kind": "json_fidelity",
+      "args": [
+        "feedback",
+        "list",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "[]\n"
+    },
+    {
+      "command": "feedback list",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "find",
+      "kind": "help",
+      "args": [
+        "find",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Search PubMed and return ready-to-render article cards (title, authors, journal,\ndate, DOI, PMID, evidence-level badge, optional abstract) in a single command.\n\nUse this for a general literature search. For evidence of a specific clinical\ntype (therapy, diagnosis, etc.) use 'clinical' instead.\n\nUsage:\n  pubmed-pp-cli find \u003cquery\u003e [flags]\n\nExamples:\n  pubmed-pp-cli find \"semaglutide heart failure\" --limit 10 --json\n  pubmed-pp-cli find \"long covid\" --oa --humans --with-abstract --json\n  pubmed-pp-cli find \"atrial fibrillation\" --evidence randomized-controlled-trial --json\n\nFlags:\n      --age string        Restrict to an age group: adolescent, adult, aged, child, infant, middle-aged, newborn\n      --english           Restrict to English-language articles\n      --evidence string   Keep only a study type: meta-analysis, systematic-review, guideline, randomized-controlled-trial, clinical-trial, review, case-report, comparative-study, observational-study\n  -h, --help              help for find\n      --humans            Restrict to human studies\n      --limit int         Max article cards to return (default 20)\n      --oa                Restrict to free full-text (open-access) articles\n      --sex string        Restrict to sex: male | female\n      --sort string       Sort order: relevance | pub_date | Author | JournalName\n      --species string    Restrict to species: humans | animals\n      --with-abstract     Include each article's abstract text\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "find",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [find] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "find",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [find] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "find",
+      "kind": "error_path",
+      "args": [
+        "find",
+        "__printing_press_invalid__",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"query\": \"__printing_press_invalid__\",\n  \"resolved_query\": \"__printing_press_invalid__\",\n  \"total_count\": 0,\n  \"returned\": 0,\n  \"articles\": []\n}\n"
+    },
+    {
+      "command": "learnings candidates",
+      "kind": "help",
+      "args": [
+        "learnings",
+        "candidates",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Lists rows from the learn_candidates table: corrections and playbook\nshapes the CLI derived from observed usage. Candidates are quarantined\nuntil an explicit 'learnings confirm \u003cid\u003e' materializes them; they never\nalter command behavior or recall's verified results on their own.\n\nUsage:\n  pubmed-pp-cli learnings candidates [flags]\n\nExamples:\n  pubmed-pp-cli learnings candidates\n  pubmed-pp-cli learnings candidates --class flag_alias\n  pubmed-pp-cli learnings candidates --status rejected\n\nFlags:\n      --class string    Filter by class (flag_alias | playbook_candidate)\n      --db string       SQLite database file path (default: resolved data directory data.db)\n  -h, --help            help for candidates\n      --limit int       Maximum rows to return (default: capped)\n      --status string   Filter by status (open | confirmed | rejected | expired; empty for all) (default \"open\")\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "learnings candidates",
+      "kind": "happy_path",
+      "args": [
+        "learnings",
+        "candidates"
+      ],
+      "status": "pass",
+      "output_sample": "[]\n"
+    },
+    {
+      "command": "learnings candidates",
+      "kind": "json_fidelity",
+      "args": [
+        "learnings",
+        "candidates",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "[]\n"
+    },
+    {
+      "command": "learnings candidates",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "learnings confirm",
+      "kind": "help",
+      "args": [
+        "learnings",
+        "confirm",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Promotes one open candidate into the verified knowledge tables.\n\nThe full candidate payload is printed before anything is written, so\nthe caller always sees exactly what is being blessed. Materialization\nis per class:\n\n  playbook_candidate  upserts a playbook row for the candidate's query\n                      family (confidence 2, the same floor as a teach)\n  flag_alias          appends a timestamped [amend ...] correction note\n                      to the query family's playbook notes\n\nUsage errors (unknown id, non-open status) exit 2.\n\nUsage:\n  pubmed-pp-cli learnings confirm \u003cid\u003e [flags]\n\nExamples:\n  pubmed-pp-cli learnings confirm 3\n\nFlags:\n      --db string   SQLite database file path (default: resolved data directory data.db)\n  -h, --help        help for confirm\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "learnings confirm",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "learnings confirm",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "learnings confirm",
+      "kind": "error_path",
+      "args": [
+        "learnings",
+        "confirm",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 2,
+      "output_sample": "Error: learnings confirm: invalid candidate id \"__printing_press_invalid__\"\n"
+    },
+    {
+      "command": "learnings forget",
+      "kind": "help",
+      "args": [
+        "learnings",
+        "forget",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Removes rows from the search_learnings table so a bad teach can be\nundone without dropping the whole DB.\n\nRequires at least one of --resource, --action, or --all.\n\nUsage:\n  pubmed-pp-cli learnings forget \u003cquery\u003e [flags]\n\nExamples:\n  pubmed-pp-cli learnings forget \"\u003cquestion\u003e\" --resource \u003cid\u003e\n  pubmed-pp-cli learnings forget \"\u003cquestion\u003e\" --all\n\nFlags:\n      --action string     Delete only rules with this action (boost | hide | alias_of)\n      --all               Delete every rule for the supplied query\n      --db string         SQLite database file path (default: resolved data directory data.db)\n  -h, --help              help for forget\n      --resource string   Delete only the rule for this resource_id\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "learnings forget",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"query\" at depth 0"
+    },
+    {
+      "command": "learnings forget",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"query\" at depth 0"
+    },
+    {
+      "command": "learnings forget",
+      "kind": "error_path",
+      "args": [
+        "learnings",
+        "forget",
+        "__printing_press_invalid__",
+        "--json"
+      ],
+      "status": "pass",
+      "exit_code": 2,
+      "output_sample": "Error: learnings forget: forget learnings: pass --resource, --action, or --all\n"
+    },
+    {
+      "command": "learnings list",
+      "kind": "help",
+      "args": [
+        "learnings",
+        "list",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "List recorded learnings\n\nUsage:\n  pubmed-pp-cli learnings list [flags]\n\nExamples:\n  pubmed-pp-cli learnings list --agent\n  pubmed-pp-cli learnings list --query \"\u003csubstring\u003e\"\n  pubmed-pp-cli learnings list --warnings --agent\n\nFlags:\n      --action string        Filter by action (boost | hide | alias_of)\n      --db string            SQLite database file path (default: resolved data directory data.db)\n  -h, --help                 help for list\n      --limit int            Maximum rows to return (default 200)\n      --min-confidence int   Filter by minimum confidence\n      --query string         Filter by normalized query substring\n      --resource string      Filter by resource_id\n      --source string        Filter by source (taught | manual-forget)\n      --warnings             Return teach-time warnings from teach.log instead of stored learning rows\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "learnings list",
+      "kind": "happy_path",
+      "args": [
+        "learnings",
+        "list",
+        "--agent"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"meta\": {\n    \"source\": \"local\"\n  },\n  \"results\": []\n}\n"
+    },
+    {
+      "command": "learnings list",
+      "kind": "json_fidelity",
+      "args": [
+        "learnings",
+        "list",
+        "--agent",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"meta\": {\n    \"source\": \"local\"\n  },\n  \"results\": []\n}\n"
+    },
+    {
+      "command": "learnings list",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "learnings purge",
+      "kind": "help",
+      "args": [
+        "learnings",
+        "purge",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Deletes expired and confirmed candidate rows. Materialized artifacts\n(playbook rows, correction notes) are untouched. Rejected rows are kept\nby default because they tombstone their derivation signatures; pass\n--tombstones to remove them too, which re-allows derivation of those\nsignatures. Open rows are never purged.\n\nOpen rows past the unseen TTL are swept to expired first, so a single\npurge also clears stale candidates nobody judged.\n\nUsage:\n  pubmed-pp-cli learnings purge [flags]\n\nExamples:\n  pubmed-pp-cli learnings purge\n  pubmed-pp-cli learnings purge --tombstones\n\nFlags:\n      --db string    SQLite database file path (default: resolved data directory data.db)\n  -h, --help         help for purge\n      --tombstones   Also delete rejected rows (re-allows derivation of their signatures)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "learnings purge",
+      "kind": "happy_path",
+      "args": [
+        "learnings",
+        "purge"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"expired\": 0,\n  \"purged\": 0,\n  \"tombstones\": false\n}\n"
+    },
+    {
+      "command": "learnings purge",
+      "kind": "json_fidelity",
+      "args": [
+        "learnings",
+        "purge",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"expired\": 0,\n  \"purged\": 0,\n  \"tombstones\": false\n}\n"
+    },
+    {
+      "command": "learnings purge",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "learnings reject",
+      "kind": "help",
+      "args": [
+        "learnings",
+        "reject",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Marks a candidate rejected. The rejected row stays as a tombstone on\nits derivation signature: the identical observation never re-derives a\ncandidate, and recall never resurfaces it.\n\nRejecting a CONFIRMED playbook_candidate tombstones the candidate but\nleaves the playbook row in place; repair the guidance with\n'playbook amend' if needed. A confirmed flag_alias cannot be rejected:\nits correction note already lives in the family playbook, so repair the\nguidance with 'playbook amend' instead.\n\nUsage errors (unknown id, no-reject-path candidates) exit 2.\n\nUsage:\n  pubmed-pp-cli learnings reject \u003cid\u003e [flags]\n\nExamples:\n  pubmed-pp-cli learnings reject 3\n\nFlags:\n      --db string   SQLite database file path (default: resolved data directory data.db)\n  -h, --help        help for reject\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "learnings reject",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "learnings reject",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "blocked-fixture: required API parameter"
+    },
+    {
+      "command": "learnings reject",
+      "kind": "error_path",
+      "args": [
+        "learnings",
+        "reject",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 2,
+      "output_sample": "Error: learnings reject: invalid candidate id \"__printing_press_invalid__\"\n"
+    },
+    {
+      "command": "learnings stats",
+      "kind": "help",
+      "args": [
+        "learnings",
+        "stats",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Aggregates the local learn_events table into the loop's headline\nmetrics:\n\n  recall_hit_rate           recall hits / (hits + misses)\n  teach_to_reuse            fraction of taught learnings later seen in a\n                            recall hit (joined by learning row id, with a\n                            query-family fallback for older rows)\n  playbook_resolution_rate  playbook hits not followed by an amend on the\n                            same query family\n  candidates_confirmed/rejected  judgment counts on auto-captured candidates\n\nRates are null until their denominator is non-zero. Everything is\nlocal-only: events never leave this machine.\n\nUsage:\n  pubmed-pp-cli learnings stats [flags]\n\nExamples:\n  pubmed-pp-cli learnings stats\n  pubmed-pp-cli learnings stats --json\n\nFlags:\n      --db string   SQLite database file path (default: resolved data directory data.db)\n  -h, --help        help for stats\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "learnings stats",
+      "kind": "happy_path",
+      "args": [
+        "learnings",
+        "stats"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"recall_hit_rate\": null,\n  \"recall_hits\": 0,\n  \"recall_misses\": 0,\n  \"teach_to_reuse\": null,\n  \"taught_rows\": 0,\n  \"reused_rows\": 0,\n  \"playbook_resolution_rate\": null,\n  \"playbook_hits\": 0,\n  \"playbook_hits_amended\": 0,\n  \"candidates_confirmed\": 0,\n  \"candidates_rejected\": 0,\n  \"event_counts\": {},\n  \"events_pruned\": 0\n}\n"
+    },
+    {
+      "command": "learnings stats",
+      "kind": "json_fidelity",
+      "args": [
+        "learnings",
+        "stats",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"recall_hit_rate\": null,\n  \"recall_hits\": 0,\n  \"recall_misses\": 0,\n  \"teach_to_reuse\": null,\n  \"taught_rows\": 0,\n  \"reused_rows\": 0,\n  \"playbook_resolution_rate\": null,\n  \"playbook_hits\": 0,\n  \"playbook_hits_amended\": 0,\n  \"candidates_confirmed\": 0,\n  \"candidates_rejected\": 0,\n  \"event_counts\": {},\n  \"events_pruned\": 0\n}\n"
+    },
+    {
+      "command": "learnings stats",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "pico",
+      "kind": "help",
+      "args": [
+        "pico",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Build an evidence-based-medicine question from its components and search PubMed:\n\n  --patient       the population or problem (e.g. \"type 2 diabetes\")\n  --intervention  the intervention or exposure (e.g. \"SGLT2 inhibitor\")\n  --comparison    the comparator (optional, e.g. \"metformin\")\n  --outcome       the outcome (e.g. \"cardiovascular mortality\")\n\nAt least a patient or intervention is required.\n\nUsage:\n  pubmed-pp-cli pico [flags]\n\nExamples:\n  pubmed-pp-cli pico --patient \"type 2 diabetes\" --intervention \"SGLT2 inhibitor\" --outcome \"cardiovascular mortality\" --json\n  pubmed-pp-cli pico --patient \"heart failure\" --intervention \"sacubitril valsartan\" --comparison \"enalapril\" --json\n\nFlags:\n      --comparison string     Comparator (C, optional)\n      --english               Restrict to English-language articles\n  -h, --help                  help for pico\n      --humans                Restrict to human studies\n      --intervention string   Intervention or exposure (I)\n      --limit int             Max article cards to return (default 20)\n      --outcome string        Outcome (O)\n      --patient string        Population or problem (P)\n      --with-abstract         Include each article's abstract text\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "pico",
+      "kind": "happy_path",
+      "args": [
+        "pico",
+        "--patient",
+        "type 2 diabetes",
+        "--intervention",
+        "SGLT2 inhibitor",
+        "--outcome",
+        "cardiovascular mortality",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"pico\": {\n    \"patient\": \"type 2 diabetes\",\n    \"intervention\": \"SGLT2 inhibitor\",\n    \"outcome\": \"cardiovascular mortality\"\n  },\n  \"resolved_query\": \"(type 2 diabetes) AND (SGLT2 inhibitor) AND (cardiovascular mortality)\",\n  \"total_count\": 1355,\n  \"returned\": 20,\n  \"articles\": [\n    {\n      \"pmid\": \"42463183\",\n      \"title\": \"Real-world impact of SGLT2 inhibitors on the risk of symptomatic urinary tract infections in patients with cardiometabolic and kidney diseases: a prospective, multicentre, observational cohort study protocol.\",\n      \"authors\": [\n        \"Xiang S\",\n        \"Ma G\",\n        \"Ji J\",\n        \"Li D\",\n        \"Yang Q\"\n      ],\n      \"journal\": \"BMJ Open\",\n      \"pub_date\": \"2026 Jul 15\",\n      \"year\": 2026,\n      \"doi\": \"10.1136/bmjopen-2026-122826\",\n      \"evidence_level\": \"article\",\n      \"pub_types\": [\n        \"Journal Article\"\n      ],\n      \"url\": \"https://pubmed.ncbi.nlm.nih.gov/42463183/\"\n    },\n    {\n      \"pmid\": \"42440116\",\n      \"title\": \"Newer and novel antidiabetic drug classes across the cardiovascular-kidney-metabolic continuum.\",\n      \"authors\": [\n        \"Stefanakis K\",\n        \"Karakasis P\",\n        \"Vasdeki D\",\n        \"Popovic DS\",\n        \"Patoulias D\",\n        \"Rizzo M\",\n        \"Mantzoros CS\"\n      ],\n      \"journal\": \"Endocr Rev\",\n      \"pub_date\": \"2026 Jul 13\",\n      \"year\": 2026,\n      \"doi\": \"10.1210/endrev/bnag022\",\n      \"evidence_level\": \"article\",\n      \"pub_types\": [\n        \"Journal Article\"\n      ],\n      \"url\": \"https://pubmed.ncbi.nlm.nih.gov/42440116/\"\n    },\n    {\n      \"pmid\": \"42392584\",\n      \"title\": \"SGLT2 inhibitors and chronic kidney disease: a narrative review of nephroprotective mechanisms from hemodynamics to metabolism.\",\n      \"authors\": [\n        \"Habas E\",\n        \"Rayani A\",\n        \"Habas A\",\n        \"Alarbi K\",\n        \"Habas A\",\n        \"Baghi M\",\n        \"Habas E\",\n        \"Errayes E\",\n        \"Hamad A\",\n        \"Elzouki A\"\n      ],\n      \"journal\": \"Ren Fail\",\n      \"pub_date\": \"2026 Dec\",\n      \"year\": 2026,\n      \"doi\": \"10.1080/0886022X.2026.2688578\",\n      \"evidence_level\": \"review\",\n      \"pub_types\": [\n        \"Journal Article\",\n        \"Review\"\n      ],\n      \"url\": \"https://pubmed.ncbi.nlm.nih.gov/42392584/\"\n    },\n    {\n      \"pmid\": \"42343656\",\n      \"title\": \"Clinical events and healthcare costs of dapagliflozin in adults with cardiovascular-kidney-metabolic syndrome in Spain: a cost-offset analysis.\",\n      \"authors\": [\n        \"Alcázar Arroyo R\",\n        \"Comín-Colet J\",\n        \"Espigares MJ\",\n        \"Gutiérrez R\",\n        \"Navarro González JF\",\n        \"Vallès Callol JA\",\n        \"Capel Sanchez M\",\n        \"Rubio Ponce de León S\",\n        \"Castro Gasch M\",\n        \"Pomares E\",\n        \"Gómez G\",\n        \"Caudron C\"\n      ],\n      \"journal\": \"J Med Econ\",\n      \"pub_date\": \"2026 Dec\",\n      \"year\": 2026,\n      \"doi\": \"10.1080/13696998.2026.2688703\",\n      \"evidence_level\": \"article\",\n      \"pub_types\": [\n        \"Journal Article\"\n      ],\n      \"url\": \"https://pubmed.ncbi.nlm.nih.gov/42343656/\"\n    },\n    {\n      \"pmid\": \"42249978\",\n      \"title\": \"Association between SGLT2 inhibitors and outcomes after heart transplant in patients with type 2 diabetes: A systematic review and meta-analysis.\",\n      \"authors\": [\n        \"Costa TA\",\n        \"de Sousa LMT\",\n        \"Nogueira A\",\n        \"Chagas GCL\",\n        \"Abreu M\",\n        \"Allen LA\",\n        \"Cornwell WK 3rd\",\n        \"Harrington J\"\n      ],\n      \"journal\": \"Heart Fail Rev\",\n      \"pub_date\": \"2026 Jun 6\",\n      \"year\": 2026,\n      \"doi\": \"10.1007/s10741-026-10641-3\",\n      \"evidence_level\": \"meta-analysis\",\n      \"pub_types\": [\n        \"Journal Article\",\n        \"Systematic Review\",\n        \"Meta-Analysis\",\n        \"Review\"\n      ],\n      \"url\": \"https://pubmed.ncbi.nlm.nih.gov/42249978/\"\n    },\n    {\n      \"pmid\": \"42249941\",\n      \"title\": \"PERsonalised Medicine for Intensification of Treatment (PERMIT) in type 2 diabetes mellitus: a target trial emulation from routine data.\",\n      \"authors\": [\n        \"Lugo-Palacios DG\",\n        \"Bidulka P\",\n        \"Charlton P…[truncated]"
+    },
+    {
+      "command": "pico",
+      "kind": "json_fidelity",
+      "args": [
+        "pico",
+        "--patient",
+        "type 2 diabetes",
+        "--intervention",
+        "SGLT2 inhibitor",
+        "--outcome",
+        "cardiovascular mortality",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"pico\": {\n    \"patient\": \"type 2 diabetes\",\n    \"intervention\": \"SGLT2 inhibitor\",\n    \"outcome\": \"cardiovascular mortality\"\n  },\n  \"resolved_query\": \"(type 2 diabetes) AND (SGLT2 inhibitor) AND (cardiovascular mortality)\",\n  \"total_count\": 1355,\n  \"returned\": 20,\n  \"articles\": [\n    {\n      \"pmid\": \"42463183\",\n      \"title\": \"Real-world impact of SGLT2 inhibitors on the risk of symptomatic urinary tract infections in patients with cardiometabolic and kidney diseases: a prospective, multicentre, observational cohort study protocol.\",\n      \"authors\": [\n        \"Xiang S\",\n        \"Ma G\",\n        \"Ji J\",\n        \"Li D\",\n        \"Yang Q\"\n      ],\n      \"journal\": \"BMJ Open\",\n      \"pub_date\": \"2026 Jul 15\",\n      \"year\": 2026,\n      \"doi\": \"10.1136/bmjopen-2026-122826\",\n      \"evidence_level\": \"article\",\n      \"pub_types\": [\n        \"Journal Article\"\n      ],\n      \"url\": \"https://pubmed.ncbi.nlm.nih.gov/42463183/\"\n    },\n    {\n      \"pmid\": \"42440116\",\n      \"title\": \"Newer and novel antidiabetic drug classes across the cardiovascular-kidney-metabolic continuum.\",\n      \"authors\": [\n        \"Stefanakis K\",\n        \"Karakasis P\",\n        \"Vasdeki D\",\n        \"Popovic DS\",\n        \"Patoulias D\",\n        \"Rizzo M\",\n        \"Mantzoros CS\"\n      ],\n      \"journal\": \"Endocr Rev\",\n      \"pub_date\": \"2026 Jul 13\",\n      \"year\": 2026,\n      \"doi\": \"10.1210/endrev/bnag022\",\n      \"evidence_level\": \"article\",\n      \"pub_types\": [\n        \"Journal Article\"\n      ],\n      \"url\": \"https://pubmed.ncbi.nlm.nih.gov/42440116/\"\n    },\n    {\n      \"pmid\": \"42392584\",\n      \"title\": \"SGLT2 inhibitors and chronic kidney disease: a narrative review of nephroprotective mechanisms from hemodynamics to metabolism.\",\n      \"authors\": [\n        \"Habas E\",\n        \"Rayani A\",\n        \"Habas A\",\n        \"Alarbi K\",\n        \"Habas A\",\n        \"Baghi M\",\n        \"Habas E\",\n        \"Errayes E\",\n        \"Hamad A\",\n        \"Elzouki A\"\n      ],\n      \"journal\": \"Ren Fail\",\n      \"pub_date\": \"2026 Dec\",\n      \"year\": 2026,\n      \"doi\": \"10.1080/0886022X.2026.2688578\",\n      \"evidence_level\": \"review\",\n      \"pub_types\": [\n        \"Journal Article\",\n        \"Review\"\n      ],\n      \"url\": \"https://pubmed.ncbi.nlm.nih.gov/42392584/\"\n    },\n    {\n      \"pmid\": \"42343656\",\n      \"title\": \"Clinical events and healthcare costs of dapagliflozin in adults with cardiovascular-kidney-metabolic syndrome in Spain: a cost-offset analysis.\",\n      \"authors\": [\n        \"Alcázar Arroyo R\",\n        \"Comín-Colet J\",\n        \"Espigares MJ\",\n        \"Gutiérrez R\",\n        \"Navarro González JF\",\n        \"Vallès Callol JA\",\n        \"Capel Sanchez M\",\n        \"Rubio Ponce de León S\",\n        \"Castro Gasch M\",\n        \"Pomares E\",\n        \"Gómez G\",\n        \"Caudron C\"\n      ],\n      \"journal\": \"J Med Econ\",\n      \"pub_date\": \"2026 Dec\",\n      \"year\": 2026,\n      \"doi\": \"10.1080/13696998.2026.2688703\",\n      \"evidence_level\": \"article\",\n      \"pub_types\": [\n        \"Journal Article\"\n      ],\n      \"url\": \"https://pubmed.ncbi.nlm.nih.gov/42343656/\"\n    },\n    {\n      \"pmid\": \"42249978\",\n      \"title\": \"Association between SGLT2 inhibitors and outcomes after heart transplant in patients with type 2 diabetes: A systematic review and meta-analysis.\",\n      \"authors\": [\n        \"Costa TA\",\n        \"de Sousa LMT\",\n        \"Nogueira A\",\n        \"Chagas GCL\",\n        \"Abreu M\",\n        \"Allen LA\",\n        \"Cornwell WK 3rd\",\n        \"Harrington J\"\n      ],\n      \"journal\": \"Heart Fail Rev\",\n      \"pub_date\": \"2026 Jun 6\",\n      \"year\": 2026,\n      \"doi\": \"10.1007/s10741-026-10641-3\",\n      \"evidence_level\": \"meta-analysis\",\n      \"pub_types\": [\n        \"Journal Article\",\n        \"Systematic Review\",\n        \"Meta-Analysis\",\n        \"Review\"\n      ],\n      \"url\": \"https://pubmed.ncbi.nlm.nih.gov/42249978/\"\n    },\n    {\n      \"pmid\": \"42249941\",\n      \"title\": \"PERsonalised Medicine for Intensification of Treatment (PERMIT) in type 2 diabetes mellitus: a target trial emulation from routine data.\",\n      \"authors\": [\n        \"Lugo-Palacios DG\",\n        \"Bidulka P\",\n        \"Charlton P…[truncated]"
+    },
+    {
+      "command": "pico",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "playbook amend",
+      "kind": "help",
+      "args": [
+        "playbook",
+        "amend",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Appends a timestamped note to the matching family's playbook notes_text.\nIf no playbook exists for the family yet, creates a notes-only one.\n\nDesigned for agents to fire when their debug-protocol response\nidentifies a concrete correction worth persisting (a workaround, an\nundocumented endpoint shape, a stale field name, observed schema\ndrift). Same fire-and-forget posture as teach: silent on success,\nerrors to teach.log, safe to background with \u0026.\n\nDisabling: pass --no-learn or set PUBMED_NO_LEARN=true.\n\nUsage:\n  pubmed-pp-cli playbook amend [flags]\n\nExamples:\n  pubmed-pp-cli playbook amend \\\n    --query \"\u003cexact recall query\u003e\" \\\n    --add-note \"summary endpoint envelope: data lives at .results.header, not .header\"\n\nFlags:\n      --add-note string   The note text to append to the family's playbook (required)\n      --db string         Database path (default: standard cache location)\n  -h, --help              help for amend\n      --query string      The exact recall query whose family should be amended (required)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "playbook amend",
+      "kind": "happy_path",
+      "args": [
+        "playbook",
+        "amend",
+        "\\"
+      ],
+      "status": "fail",
+      "exit_code": 2,
+      "reason": "exit 2"
+    },
+    {
+      "command": "playbook amend",
+      "kind": "json_fidelity",
+      "args": [
+        "playbook",
+        "amend",
+        "\\",
+        "--json"
+      ],
+      "status": "fail",
+      "exit_code": 2,
+      "reason": "exit 2"
+    },
+    {
+      "command": "playbook amend",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "playbook list",
+      "kind": "help",
+      "args": [
+        "playbook",
+        "list",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "List stored playbooks (query_family, content presence, last observed)\n\nUsage:\n  pubmed-pp-cli playbook list [flags]\n\nExamples:\n  pubmed-pp-cli playbook list --agent\n\nFlags:\n      --db string   Database path (default: standard cache location)\n  -h, --help        help for list\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "playbook list",
+      "kind": "happy_path",
+      "args": [
+        "playbook",
+        "list",
+        "--agent"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"meta\": {\n    \"source\": \"local\"\n  },\n  \"results\": []\n}\n"
+    },
+    {
+      "command": "playbook list",
+      "kind": "json_fidelity",
+      "args": [
+        "playbook",
+        "list",
+        "--agent",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"meta\": {\n    \"source\": \"local\"\n  },\n  \"results\": []\n}\n"
+    },
+    {
+      "command": "playbook list",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "profile delete",
+      "kind": "help",
+      "args": [
+        "profile",
+        "delete",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Remove a profile\n\nUsage:\n  pubmed-pp-cli profile delete \u003cname\u003e [flags]\n\nExamples:\n  pubmed-pp-cli profile delete my-defaults --yes\n  pubmed-pp-cli profile delete old-profile --yes --json\n\nFlags:\n  -h, --help   help for delete\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "profile delete",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile delete",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile delete",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "mutating command; error_path would call live API without --dry-run"
+    },
+    {
+      "command": "profile delete",
+      "kind": "error_path_real",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile list",
+      "kind": "help",
+      "args": [
+        "profile",
+        "list",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "List saved profiles\n\nUsage:\n  pubmed-pp-cli profile list [flags]\n\nExamples:\n  pubmed-pp-cli profile list\n  pubmed-pp-cli profile list --json\n\nFlags:\n  -h, --help   help for list\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "profile list",
+      "kind": "happy_path",
+      "args": [
+        "profile",
+        "list"
+      ],
+      "status": "pass",
+      "output_sample": "NAME  FIELDS  DESCRIPTION\n"
+    },
+    {
+      "command": "profile list",
+      "kind": "json_fidelity",
+      "args": [
+        "profile",
+        "list",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "[]\n"
+    },
+    {
+      "command": "profile list",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "profile save",
+      "kind": "help",
+      "args": [
+        "profile",
+        "save",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Captures every flag explicitly set on the invocation and stores\nthem under \u003cname\u003e. To update an existing profile, run save again; the\nentry is replaced.\n\nTo avoid creating empty profiles, at least one non-default flag must be\npresent (other than --profile, --config, and --home, which are never\ncaptured: they control profile/config resolution and would never apply).\n\nUsage:\n  pubmed-pp-cli profile save \u003cname\u003e [--\u003cflag\u003e \u003cvalue\u003e ...] [flags]\n\nExamples:\n  pubmed-pp-cli profile save my-defaults --json --compact\n  pubmed-pp-cli profile save tonight-defaults --region US\n\nFlags:\n      --description string   Short description shown in 'profile list'\n  -h, --help                 help for save\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "profile save",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile save",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile save",
+      "kind": "error_path",
+      "args": [
+        "profile",
+        "save",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 1,
+      "output_sample": "Error: no non-default flags set - pass at least one flag to save into \"__printing_press_invalid__\"\n"
+    },
+    {
+      "command": "profile show",
+      "kind": "help",
+      "args": [
+        "profile",
+        "show",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Show a profile's values as JSON\n\nUsage:\n  pubmed-pp-cli profile show \u003cname\u003e [flags]\n\nExamples:\n  pubmed-pp-cli profile show my-defaults\n  pubmed-pp-cli profile show tonight-defaults --json\n\nFlags:\n  -h, --help   help for show\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "profile show",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile show",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile show",
+      "kind": "error_path",
+      "args": [
+        "profile",
+        "show",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 1,
+      "output_sample": "Error: profile \"__printing_press_invalid__\" not found\n"
+    },
+    {
+      "command": "profile use",
+      "kind": "help",
+      "args": [
+        "profile",
+        "use",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Print the flag values a profile will apply (does not execute anything)\n\nUsage:\n  pubmed-pp-cli profile use \u003cname\u003e [flags]\n\nExamples:\n  pubmed-pp-cli profile use my-defaults\n  pubmed-pp-cli profile use tonight-defaults --json\n\nFlags:\n  -h, --help   help for use\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "profile use",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile use",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "profile use",
+      "kind": "error_path",
+      "args": [
+        "profile",
+        "use",
+        "__printing_press_invalid__"
+      ],
+      "status": "pass",
+      "exit_code": 1,
+      "output_sample": "Error: profile \"__printing_press_invalid__\" not found\n"
+    },
+    {
+      "command": "recall",
+      "kind": "help",
+      "args": [
+        "recall",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Returns prior learnings matching the supplied query by token-set\noverlap (Jaccard \u003e= 0.6) plus entity-aware validation. The LLM should\ncall this FIRST when starting work on a new user question; if\nfound=true AND results[0].entity_match == \"exact\" AND confidence \u003e= 2,\nthe LLM can skip discovery and go straight to live fetch for the\nreturned resource IDs.\n\nEmpty match returns {\"found\": false, \"results\": []} with exit 0 — this\nis an information query, not a not-found error.\n\nDisabling: PUBMED_NO_LEARN=true returns the empty shape even\nwhen learnings exist.\n\nUsage:\n  pubmed-pp-cli recall \u003cquery\u003e [flags]\n\nExamples:\n  pubmed-pp-cli recall \"\u003cquestion\u003e\" --agent\n  pubmed-pp-cli recall \"\u003cquestion\u003e\" --agent --min-confidence 2\n\nFlags:\n      --db string            SQLite database file path (default: resolved data directory data.db)\n      --debug-mismatches     Include cross-entity mismatches in the envelope under mismatches[]\n  -h, --help                 help for recall\n      --limit int            Maximum number of learnings to return (default 10)\n      --min-confidence int   Minimum confidence to include in results (default 1)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "recall",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [recall] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "recall",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [recall] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "recall",
+      "kind": "error_path",
+      "args": [
+        "recall",
+        "__printing_press_invalid__",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"found\": false,\n  \"query\": \"__printing_press_invalid__\",\n  \"normalized\": \"__printing_press_invalid__\",\n  \"query_entities\": [],\n  \"results\": [],\n  \"warnings\": [\n    \"no_learnings_for_query_family\"\n  ]\n}\n"
+    },
+    {
+      "command": "saved add",
+      "kind": "help",
+      "args": [
+        "saved",
+        "add",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Save a named query. The name is a short handle; the query is the full PubMed\nterm (quote it if it contains spaces or boolean operators). Changing the term\nresets the watch baseline.\n\nUsage:\n  pubmed-pp-cli saved add \u003cname\u003e \u003cquery\u003e [flags]\n\nExamples:\n  pubmed-pp-cli saved add af-anticoag \"atrial fibrillation AND anticoagulation\" --json\n\nFlags:\n  -h, --help   help for add\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "saved add",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [saved add] has fewer segments than placeholders (2)"
+    },
+    {
+      "command": "saved add",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [saved add] has fewer segments than placeholders (2)"
+    },
+    {
+      "command": "saved add",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "mutating command; error_path would call live API without --dry-run"
+    },
+    {
+      "command": "saved add",
+      "kind": "error_path_real",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [saved add] has fewer segments than placeholders (2)"
+    },
+    {
+      "command": "saved list",
+      "kind": "help",
+      "args": [
+        "saved",
+        "list",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "List saved queries and when each last ran\n\nUsage:\n  pubmed-pp-cli saved list [flags]\n\nExamples:\n  pubmed-pp-cli saved list --json\n\nFlags:\n  -h, --help   help for list\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "saved list",
+      "kind": "happy_path",
+      "args": [
+        "saved",
+        "list",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "[]\n"
+    },
+    {
+      "command": "saved list",
+      "kind": "json_fidelity",
+      "args": [
+        "saved",
+        "list",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "[]\n"
+    },
+    {
+      "command": "saved list",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "saved remove",
+      "kind": "help",
+      "args": [
+        "saved",
+        "remove",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Delete a saved query\n\nUsage:\n  pubmed-pp-cli saved remove \u003cname\u003e [flags]\n\nExamples:\n  pubmed-pp-cli saved remove af-anticoag --json\n\nFlags:\n  -h, --help   help for remove\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "saved remove",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "saved remove",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "saved remove",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "mutating command; error_path would call live API without --dry-run"
+    },
+    {
+      "command": "saved remove",
+      "kind": "error_path_real",
+      "args": null,
+      "status": "skip",
+      "reason": "non-id positional \"name\" at depth 0"
+    },
+    {
+      "command": "tail",
+      "kind": "help",
+      "args": [
+        "tail",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Tail streams live data changes by polling the API at configurable intervals.\nEvents are emitted as NDJSON to stdout for piping to other tools.\nGracefully shuts down on SIGTERM/SIGINT.\n\nNote: For APIs with WebSocket or SSE support, a future version will use\nnative streaming instead of polling.\n\nUsage:\n  pubmed-pp-cli tail [resource] [flags]\n\nExamples:\n  # Tail all changes every 10 seconds\n  pubmed-pp-cli tail --interval 10s\n\n  # Tail a specific resource\n  pubmed-pp-cli tail messages --interval 5s\n\n  # Pipe to jq for filtering\n  pubmed-pp-cli tail events --interval 30s | jq 'select(.type == \"error\")'\n\nFlags:\n      --follow              Keep running (set --follow=false for single poll) (default true)\n  -h, --help                help for tail\n      --interval duration   Poll interval (default 10s)\n      --resource string     Resource type to tail\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "tail",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [tail] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "tail",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [tail] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "tail",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no-error-path-probe annotation"
+    },
+    {
+      "command": "teach",
+      "kind": "help",
+      "args": [
+        "teach",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Record one or more \"this query -\u003e this resource\" mappings so the next\nquery that matches surfaces the right resources without re-running discovery.\n\nThis command is designed to be backgrounded by an LLM right before it\nemits the user-facing response: silent on success, errors only to\nthe CLI state directory's teach.log, safe to fire-and-forget.\n\nDisabling: pass --no-learn or set PUBMED_NO_LEARN=true.\n\nUsage:\n  pubmed-pp-cli teach [flags]\n\nExamples:\n  pubmed-pp-cli teach --query \"\u003cquestion\u003e\" --resource-type \u003ctype\u003e \\\n    --resource \u003cid\u003e --resource \u003cid\u003e \u0026\n\nFlags:\n      --db string                    SQLite database file path (default: resolved data directory data.db)\n  -h, --help                         help for teach\n      --no-validate                  Suppress teach-time resource-shape validation (warnings to teach.log)\n      --notes string                 Optional free-form note recorded in the audit log\n      --playbook-file string         Optional path to a JSON playbook recording the CLI choreography for this query family\n      --playbook-json string         Optional inline JSON playbook (mutually exclusive with --playbook-file; for agents without filesystem access)\n      --playbook-notes string        Optional inline gotchas/workarounds for this query family (stored alongside the playbook)\n      --playbook-notes-file string   Optional path to a markdown file with playbook notes\n      --query string                 User's original natural-language question (required)\n      --quiet                        Silent on success (default true — designed for background invocation) (default true)\n      --resource strings             Resource ID — repeat for multiple (required)\n      --resource-type string         Resource type (required; e.g. matches a row in the local resources table)\n      --venue string                 Optional venue scope tag stored with the learning\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "teach",
+      "kind": "happy_path",
+      "args": [
+        "teach",
+        "--query",
+        "\u003cquestion\u003e",
+        "--resource-type",
+        "\u003ctype\u003e",
+        "\\"
+      ],
+      "status": "fail",
+      "exit_code": 2,
+      "reason": "exit 2"
+    },
+    {
+      "command": "teach",
+      "kind": "json_fidelity",
+      "args": [
+        "teach",
+        "--query",
+        "\u003cquestion\u003e",
+        "--resource-type",
+        "\u003ctype\u003e",
+        "\\",
+        "--json"
+      ],
+      "status": "fail",
+      "exit_code": 2,
+      "reason": "exit 2"
+    },
+    {
+      "command": "teach",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "teach-lookup",
+      "kind": "help",
+      "args": [
+        "teach-lookup",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Adds one row to entity_lookups. Used by the recall path's pattern\nengine to substitute values for canonical names at substitution time.\nComputed kinds (lowercase, uppercase, kebab-case, capitalize-first, slug)\ncannot be taught — they are derived from the canonical input.\n\nUsage:\n  pubmed-pp-cli teach-lookup [flags]\n\nExamples:\n  pubmed-pp-cli teach-lookup --kind country --canonical \"United States\" --value USA\n\nFlags:\n      --canonical string   Canonical entity name (required)\n      --db string          SQLite database file path (default: resolved data directory data.db)\n  -h, --help               help for teach-lookup\n      --kind string        Entity kind, e.g. country, team (required, must not be a computed kind)\n      --value string       Value/alias that should resolve to the canonical (required)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "teach-lookup",
+      "kind": "happy_path",
+      "args": [
+        "teach-lookup",
+        "--kind",
+        "country",
+        "--canonical",
+        "United States",
+        "--value",
+        "USA"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"canonical\": \"United States\",\n  \"kind\": \"country\",\n  \"recorded\": true,\n  \"value\": \"USA\"\n}\n"
+    },
+    {
+      "command": "teach-lookup",
+      "kind": "json_fidelity",
+      "args": [
+        "teach-lookup",
+        "--kind",
+        "country",
+        "--canonical",
+        "United States",
+        "--value",
+        "USA",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"canonical\": \"United States\",\n  \"kind\": \"country\",\n  \"recorded\": true,\n  \"value\": \"USA\"\n}\n"
+    },
+    {
+      "command": "teach-lookup",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "teach-pattern",
+      "kind": "help",
+      "args": [
+        "teach-pattern",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Adds one row to search_patterns. The recall path uses patterns to\nsubstitute live query entities into a resource template, so a pattern\nwith query_template=\"items in {entity}\" and\nresource_template=\"GROUP-{entity:category}\" generalizes one teach into\na whole family.\n\nUsage:\n  pubmed-pp-cli teach-pattern [flags]\n\nExamples:\n  pubmed-pp-cli teach-pattern \\\n    --query-template \"items in {entity}\" \\\n    --resource-template \"GROUP-{entity:category}\" \\\n    --resource-type \"items\" \\\n    --entity-kind \"category\" \\\n    --strategy substitute\n\nFlags:\n      --db string                  SQLite database file path (default: resolved data directory data.db)\n      --entity-kind string         Entity kind name registered in entity_lookups (required)\n  -h, --help                       help for teach-pattern\n      --query-template string      Query template with {entity} placeholder (required)\n      --resource-template string   Resource template with typed entity slot, e.g. PREFIX-{entity:country} (required)\n      --resource-type string       Resource type for substituted IDs (required)\n      --strategy string            Substitution strategy: substitute | substitute-then-search-prefix (default substitute)\n      --venue string               Optional venue scope tag\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "teach-pattern",
+      "kind": "happy_path",
+      "args": [
+        "teach-pattern",
+        "\\"
+      ],
+      "status": "fail",
+      "exit_code": 2,
+      "reason": "exit 2",
+      "output_sample": "Error: --query-template is required\n"
+    },
+    {
+      "command": "teach-pattern",
+      "kind": "json_fidelity",
+      "args": [
+        "teach-pattern",
+        "\\",
+        "--json"
+      ],
+      "status": "fail",
+      "exit_code": 2,
+      "reason": "exit 2",
+      "output_sample": "Error: --query-template is required\n"
+    },
+    {
+      "command": "teach-pattern",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "teach-playbook",
+      "kind": "help",
+      "args": [
+        "teach-playbook",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Stores a structured CLI command sequence (with entity slots) and/or\nfree-form gotchas/workarounds, keyed on the structural query family.\nThe recall path surfaces this whenever a future query of the same\nfamily fires, so the agent can replay the choreography and read the\nnotes verbatim.\n\nAt least one of --playbook-json/--playbook-file and --notes/--notes-file\nmust be set. --playbook-json takes the playbook body inline so MCP-only\nagents can record playbooks without a file on disk.\n\nUsage:\n  pubmed-pp-cli teach-playbook [flags]\n\nExamples:\n  pubmed-pp-cli teach-playbook \\\n    --query \"\u003cquestion that anchors the family\u003e\" \\\n    --playbook-file ~/playbooks/recipe.json \\\n    --notes-file ~/playbooks/recipe-notes.md\n\nFlags:\n      --db string              Database path (default: standard cache location)\n  -h, --help                   help for teach-playbook\n      --notes string           Free-text notes (gotchas, workarounds) -- mutually exclusive with --notes-file\n      --notes-file string      Path to a markdown file with the notes\n      --playbook-file string   Path to a JSON file with the playbook (steps, entity_slots, expected_tool_calls)\n      --playbook-json string   Inline playbook JSON (steps, entity_slots, expected_tool_calls) -- mutually exclusive with --playbook-file\n      --query string           Example query that anchors the family (required)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "teach-playbook",
+      "kind": "happy_path",
+      "args": [
+        "teach-playbook",
+        "\\"
+      ],
+      "status": "fail",
+      "exit_code": 2,
+      "reason": "exit 2"
+    },
+    {
+      "command": "teach-playbook",
+      "kind": "json_fidelity",
+      "args": [
+        "teach-playbook",
+        "\\",
+        "--json"
+      ],
+      "status": "fail",
+      "exit_code": 2,
+      "reason": "exit 2"
+    },
+    {
+      "command": "teach-playbook",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    },
+    {
+      "command": "top",
+      "kind": "help",
+      "args": [
+        "top",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Run a query, sample the top results, and count them by a chosen dimension to\nshow where the literature concentrates:\n\n  --by journal    leading journals\n  --by author     most-published authors\n  --by year       counts per publication year\n  --by evidence   distribution of study types\n\nThe query can be a positional argument or the --query flag.\n\nUsage:\n  pubmed-pp-cli top \u003cquery\u003e [flags]\n\nExamples:\n  pubmed-pp-cli top \"long covid\" --by journal --limit 15 --json\n  pubmed-pp-cli top \"CAR-T therapy\" --by author --json\n\nFlags:\n      --by string      Facet dimension: journal | author | year | evidence (default \"journal\")\n  -h, --help           help for top\n      --limit int      Max buckets to return (default 15)\n      --query string   Query to facet (alternative to the positional argument)\n      --sample int     How many top results to sample for faceting (default 100)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "top",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [top] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "top",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [top] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "top",
+      "kind": "error_path",
+      "args": [
+        "top",
+        "--query",
+        "__printing_press_invalid__",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"query\": \"__printing_press_invalid__\",\n  \"by\": \"journal\",\n  \"total_count\": 0,\n  \"sampled\": 0,\n  \"buckets\": []\n}\n"
+    },
+    {
+      "command": "trend",
+      "kind": "help",
+      "args": [
+        "trend",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Count PubMed publications per year for a topic across a date range — a\nready-to-chart time series of research attention on a disease or intervention.\n\nUsage:\n  pubmed-pp-cli trend \u003cquery\u003e [flags]\n\nExamples:\n  pubmed-pp-cli trend \"CAR-T therapy\" --from 2015 --to 2026 --json\n  pubmed-pp-cli trend \"long covid\" --from 2020 --json\n\nFlags:\n      --from int   First year (default: 9 years before --to)\n  -h, --help       help for trend\n      --to int     Last year (default: current year)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "trend",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [trend] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "trend",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [trend] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "trend",
+      "kind": "error_path",
+      "args": [
+        "trend",
+        "__printing_press_invalid__",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"query\": \"__printing_press_invalid__\",\n  \"from\": 2024,\n  \"to\": 2026,\n  \"total\": 0,\n  \"points\": [\n    {\n      \"year\": 2024,\n      \"count\": 0\n    },\n    {\n      \"year\": 2025,\n      \"count\": 0\n    },\n    {\n      \"year\": 2026,\n      \"count\": 0\n    }\n  ],\n  \"note\": \"date range narrowed to the last 3 years under dogfood\"\n}\n"
+    },
+    {
+      "command": "watch",
+      "kind": "help",
+      "args": [
+        "watch",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Run a query and return only the articles not seen on the previous watch run,\ntracking seen PMIDs in a local store. Pass a saved-query name (see 'saved') or\nan ad-hoc query string. The first run establishes the baseline and reports the\ncurrent top results as new.\n\nUsage:\n  pubmed-pp-cli watch \u003cquery-or-saved-name\u003e [flags]\n\nExamples:\n  pubmed-pp-cli watch \"sepsis biomarkers\" --json\n  pubmed-pp-cli watch af-anticoag --json\n\nFlags:\n  -h, --help        help for watch\n      --limit int   Max recent articles to check for new entries (default 50)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "watch",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [watch] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "watch",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [watch] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "watch",
+      "kind": "error_path",
+      "args": [
+        "watch",
+        "__printing_press_invalid__"
+      ],
+      "status": "fail",
+      "reason": "expected non-zero exit for invalid argument",
+      "output_sample": "{\"first_run\":true,\"name\":\"\u003credacted\u003e\",\"new_articles\":[],\"new_count\":0,\"term\":\"__printing_press_invalid__\",\"total_count\":0}"
+    },
+    {
+      "command": "which",
+      "kind": "help",
+      "args": [
+        "which",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "which resolves a natural-language capability query (for example, \"search messages\" or \"stale tickets\") to the best matching command from this CLI's curated feature index.\n\nExit codes:\n  0  at least one match found\n  2  no confident match - the query did not score against any indexed capability; fall back to '--help' or 'search' if this CLI has one\n\nUsage:\n  pubmed-pp-cli which [query] [flags]\n\nExamples:\n  pubmed-pp-cli which \"stale tickets\"\n  pubmed-pp-cli which \"bottleneck\"\n  pubmed-pp-cli which --limit 1 \"send message\"\n  pubmed-pp-cli which                                # list the full capability index\n\nFlags:\n  -h, --help        help for which\n      --limit int   Maximum number of matches to return (default 3)\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "which",
+      "kind": "happy_path",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [which] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "which",
+      "kind": "json_fidelity",
+      "args": null,
+      "status": "skip",
+      "reason": "command path [which] has fewer segments than placeholders (1)"
+    },
+    {
+      "command": "which",
+      "kind": "error_path",
+      "args": [
+        "which",
+        "__printing_press_invalid__",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{\n  \"matches\": []\n}\n"
+    },
+    {
+      "command": "workflow status",
+      "kind": "help",
+      "args": [
+        "workflow",
+        "status",
+        "--help"
+      ],
+      "status": "pass",
+      "output_sample": "Show local archive status and sync state for all resources\n\nUsage:\n  pubmed-pp-cli workflow status [flags]\n\nExamples:\n  # Show archive status\n  pubmed-pp-cli workflow status\n\n  # Show status as JSON\n  pubmed-pp-cli workflow status --json\n\nFlags:\n      --db string   SQLite database file path (default: resolved data directory data.db)\n  -h, --help        help for status\n\nGlobal Flags:\n      --agent                Set all agent-friendly defaults (--json --compact --no-input --no-color --yes)\n      --compact              Return only key fields (id, name, status, timestamps) for minimal token usage\n      --config string        Config file path\n      --csv                  Output as CSV (table and array responses)\n      --data-source string   Data source for read commands: auto (live with local fallback), live (API only), local (synced data only) (default \"auto\")\n      --deliver string       Route output to a sink: stdout (default), file:\u003cpath\u003e, webhook:\u003curl\u003e\n      --dry-run              Show request without sending\n      --home string          Root directory for config, data, state, and cache files\n      --human-friendly       Enable colored output and rich formatting\n      --json                 Output as JSON\n      --max-age duration     Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables (default 30m0s)\n      --no-cache             Bypass response cache\n      --no-color             Disable colored output\n      --no-input             Disable all interactive prompts (for CI/agents)\n      --no-learn             Disable the teach/recall learning loop for this invocation\n      --plain                Output as plain tab-separated text\n      --profile string       Apply values from a saved profile (see 'pubmed-pp-cli profile list')\n      --quiet                Bare output, one value per line\n      --rate-limit float     Max requests per second (0 to disable)\n      --select string        Comma-separated fields to include in output (e.g. --select id,name,status)\n      --timeout duration     Request timeout (default 1m0s)\n      --yes                  Skip confirmation prompts (for agents and scripts)\n"
+    },
+    {
+      "command": "workflow status",
+      "kind": "happy_path",
+      "args": [
+        "workflow",
+        "status"
+      ],
+      "status": "pass",
+      "output_sample": "No archived data. Add a site-specific sync command to populate the store.\n"
+    },
+    {
+      "command": "workflow status",
+      "kind": "json_fidelity",
+      "args": [
+        "workflow",
+        "status",
+        "--json"
+      ],
+      "status": "pass",
+      "output_sample": "{}\n"
+    },
+    {
+      "command": "workflow status",
+      "kind": "error_path",
+      "args": null,
+      "status": "skip",
+      "reason": "no positional argument"
+    }
+  ],
+  "ran_at": "2026-07-17T18:55:19.711001Z"
+}
+Error: live dogfood failed: 11/98 tests failed
+live dogfood failed: 11/98 tests failed
