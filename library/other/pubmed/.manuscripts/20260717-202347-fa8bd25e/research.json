@@ -1,0 +1,295 @@
+{
+  "api_name": "pubmed",
+  "novelty_score": 8,
+  "alternatives": [
+    {
+      "name": "edirect",
+      "url": "https://github.com/NCBI-Hackathons/EDirect",
+      "language": "Perl",
+      "install_method": "",
+      "stars": 300,
+      "last_updated": "",
+      "command_count": 12,
+      "has_json_output": false,
+      "has_auth_support": false
+    },
+    {
+      "name": "biopython",
+      "url": "https://github.com/biopython/biopython",
+      "language": "Python",
+      "install_method": "",
+      "stars": 4400,
+      "last_updated": "",
+      "command_count": 8,
+      "has_json_output": false,
+      "has_auth_support": false
+    },
+    {
+      "name": "pymed",
+      "url": "https://github.com/gijswobben/pymed",
+      "language": "Python",
+      "install_method": "",
+      "stars": 300,
+      "last_updated": "",
+      "command_count": 3,
+      "has_json_output": false,
+      "has_auth_support": false
+    },
+    {
+      "name": "metapub",
+      "url": "https://github.com/metapub/metapub",
+      "language": "Python",
+      "install_method": "",
+      "stars": 150,
+      "last_updated": "",
+      "command_count": 6,
+      "has_json_output": false,
+      "has_auth_support": false
+    }
+  ],
+  "gaps": [],
+  "patterns": [],
+  "recommendation": "proceed",
+  "researched_at": "2026-07-17T00:00:00Z",
+  "novel_features": [
+    {
+      "name": "Clinical Queries refinement",
+      "command": "clinical",
+      "description": "Refine a clinical or disease topic to therapy, diagnosis, etiology, prognosis, clinical-prediction, or systematic-review evidence, with open-access, evidence-level, and human/language/age scope filters.",
+      "rationale": "Reproduces PubMed's Clinical Queries by layering the canonical Haynes filter strategies onto esearch — no incumbent CLI exposes this as a first-class command.",
+      "example": "pubmed-pp-cli clinical \"atrial fibrillation\" --category therapy --scope narrow --humans --english --json",
+      "why_it_matters": "When a clinician or agent needs evidence of a specific type on a disease topic, this returns the right slice without hand-crafting filter syntax.",
+      "group": "Clinical evidence"
+    },
+    {
+      "name": "Article cards in one call",
+      "command": "find",
+      "description": "Search and return clean article cards (title, authors, journal, date, DOI, PMID, evidence-level badge, optional abstract) with open-access and clinical scope filters, in one command.",
+      "rationale": "Collapses esearch + esummary + optional efetch into one widget-ready JSON payload, tags each result's evidence level from its publication types, and applies open-access/human/language/age filters inline.",
+      "example": "pubmed-pp-cli find \"semaglutide heart failure\" --limit 10 --with-abstract --oa --humans --json",
+      "why_it_matters": "The dashboard widget calls one command and renders ranked, evidence-tagged cards — no client-side orchestration of E-utilities.",
+      "group": "Widget-ready reads"
+    },
+    {
+      "name": "Abstract by PMID",
+      "command": "abstract",
+      "description": "Fetch one or more abstracts by PMID as clean structured JSON or plain text.",
+      "rationale": "efetch returns only XML/MEDLINE upstream; this parses it into structured JSON the API never emits directly.",
+      "example": "pubmed-pp-cli abstract 42467460 --json",
+      "why_it_matters": "Gives an agent the abstract text for a known PMID in one clean call, no XML parsing.",
+      "group": "Widget-ready reads"
+    },
+    {
+      "name": "Publication trend",
+      "command": "trend",
+      "description": "Publication counts per year (or month) for a topic, ready to chart.",
+      "rationale": "Fans esearch across date buckets and aggregates locally; E-utilities has no trend endpoint.",
+      "example": "pubmed-pp-cli trend \"CAR-T therapy\" --from 2015 --to 2026 --json",
+      "why_it_matters": "Gives the dashboard a time-series of research attention on any disease or intervention.",
+      "group": "Local analytics"
+    },
+    {
+      "name": "What's new since last check",
+      "command": "watch",
+      "description": "Return only articles new since the last run of a saved query, using a local seen-PMID store.",
+      "rationale": "Requires persisting seen PMIDs per query in a local store — impossible with a stateless API wrapper.",
+      "example": "pubmed-pp-cli watch \"sepsis biomarkers\" --json",
+      "why_it_matters": "Powers a live 'new research' panel and disease-surveillance alerts without re-showing seen results.",
+      "group": "Local state that compounds"
+    },
+    {
+      "name": "Saved queries",
+      "command": "saved list",
+      "description": "Persist named queries with their filters, re-run them, and see when each last ran.",
+      "rationale": "Local store of named searches — the substrate for watch and trend on recurring topics.",
+      "example": "pubmed-pp-cli saved add af-anticoag \"atrial fibrillation AND anticoagulation\" --json",
+      "why_it_matters": "The widget can drive a fixed panel of standing clinical questions by name.",
+      "group": "Local state that compounds"
+    },
+    {
+      "name": "Topic landscape",
+      "command": "top",
+      "description": "Facet a query's top results by journal, author, year, or evidence level to show where the literature concentrates.",
+      "rationale": "Local aggregation over the fetched result set — no single E-utilities call returns these rollups.",
+      "example": "pubmed-pp-cli top \"long covid\" --by journal --limit 15 --json",
+      "why_it_matters": "Surfaces the leading journals/authors on a disease topic for at-a-glance dashboard context.",
+      "group": "Local analytics"
+    },
+    {
+      "name": "PICO clinical question builder",
+      "command": "pico",
+      "description": "Compose a structured Patient/Intervention/Comparison/Outcome question into a precise PubMed query and run it.",
+      "rationale": "Encodes evidence-based-medicine question structure into query translation — a clinical workflow no wrapper models.",
+      "example": "pubmed-pp-cli pico --patient \"type 2 diabetes\" --intervention \"SGLT2 inhibitor\" --outcome \"cardiovascular mortality\" --json",
+      "why_it_matters": "Lets a clinician or agent ask a well-formed evidence question and get the matching literature directly.",
+      "group": "Clinical evidence"
+    },
+    {
+      "name": "Two-term co-occurrence lens",
+      "command": "cooccur",
+      "description": "Track how often two terms (e.g. a drug and an adverse effect, or a disease and an intervention) appear together in the literature over time.",
+      "rationale": "Fans esearch across term A, term B, and 'A AND B' per year and computes co-occurrence locally — no single E-utilities call returns an association series.",
+      "example": "pubmed-pp-cli cooccur \"semaglutide\" \"pancreatitis\" --from 2018 --to 2026 --json",
+      "why_it_matters": "Surfaces emerging drug-safety or disease-intervention signals as a time series for the dashboard.",
+      "group": "Local analytics"
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "Clinical Queries refinement",
+      "command": "clinical",
+      "description": "Refine a clinical or disease topic to therapy, diagnosis, etiology, prognosis, clinical-prediction, or systematic-review evidence, with open-access, evidence-level, and human/language/age scope filters.",
+      "rationale": "Reproduces PubMed's Clinical Queries by layering the canonical Haynes filter strategies onto esearch — no incumbent CLI exposes this as a first-class command.",
+      "example": "pubmed-pp-cli clinical \"atrial fibrillation\" --category therapy --scope narrow --humans --english --json",
+      "why_it_matters": "When a clinician or agent needs evidence of a specific type on a disease topic, this returns the right slice without hand-crafting filter syntax.",
+      "group": "Clinical evidence"
+    },
+    {
+      "name": "Article cards in one call",
+      "command": "find",
+      "description": "Search and return clean article cards (title, authors, journal, date, DOI, PMID, evidence-level badge, optional abstract) with open-access and clinical scope filters, in one command.",
+      "rationale": "Collapses esearch + esummary + optional efetch into one widget-ready JSON payload, tags each result's evidence level from its publication types, and applies open-access/human/language/age filters inline.",
+      "example": "pubmed-pp-cli find \"semaglutide heart failure\" --limit 10 --with-abstract --oa --humans --json",
+      "why_it_matters": "The dashboard widget calls one command and renders ranked, evidence-tagged cards — no client-side orchestration of E-utilities.",
+      "group": "Widget-ready reads"
+    },
+    {
+      "name": "Abstract by PMID",
+      "command": "abstract",
+      "description": "Fetch one or more abstracts by PMID as clean structured JSON or plain text.",
+      "rationale": "efetch returns only XML/MEDLINE upstream; this parses it into structured JSON the API never emits directly.",
+      "example": "pubmed-pp-cli abstract 42467460 --json",
+      "why_it_matters": "Gives an agent the abstract text for a known PMID in one clean call, no XML parsing.",
+      "group": "Widget-ready reads"
+    },
+    {
+      "name": "Publication trend",
+      "command": "trend",
+      "description": "Publication counts per year (or month) for a topic, ready to chart.",
+      "rationale": "Fans esearch across date buckets and aggregates locally; E-utilities has no trend endpoint.",
+      "example": "pubmed-pp-cli trend \"CAR-T therapy\" --from 2015 --to 2026 --json",
+      "why_it_matters": "Gives the dashboard a time-series of research attention on any disease or intervention.",
+      "group": "Local analytics"
+    },
+    {
+      "name": "What's new since last check",
+      "command": "watch",
+      "description": "Return only articles new since the last run of a saved query, using a local seen-PMID store.",
+      "rationale": "Requires persisting seen PMIDs per query in a local store — impossible with a stateless API wrapper.",
+      "example": "pubmed-pp-cli watch \"sepsis biomarkers\" --json",
+      "why_it_matters": "Powers a live 'new research' panel and disease-surveillance alerts without re-showing seen results.",
+      "group": "Local state that compounds"
+    },
+    {
+      "name": "Saved queries",
+      "command": "saved list",
+      "description": "Persist named queries with their filters, re-run them, and see when each last ran.",
+      "rationale": "Local store of named searches — the substrate for watch and trend on recurring topics.",
+      "example": "pubmed-pp-cli saved add af-anticoag \"atrial fibrillation AND anticoagulation\" --json",
+      "why_it_matters": "The widget can drive a fixed panel of standing clinical questions by name.",
+      "group": "Local state that compounds"
+    },
+    {
+      "name": "Topic landscape",
+      "command": "top",
+      "description": "Facet a query's top results by journal, author, year, or evidence level to show where the literature concentrates.",
+      "rationale": "Local aggregation over the fetched result set — no single E-utilities call returns these rollups.",
+      "example": "pubmed-pp-cli top \"long covid\" --by journal --limit 15 --json",
+      "why_it_matters": "Surfaces the leading journals/authors on a disease topic for at-a-glance dashboard context.",
+      "group": "Local analytics"
+    },
+    {
+      "name": "PICO clinical question builder",
+      "command": "pico",
+      "description": "Compose a structured Patient/Intervention/Comparison/Outcome question into a precise PubMed query and run it.",
+      "rationale": "Encodes evidence-based-medicine question structure into query translation — a clinical workflow no wrapper models.",
+      "example": "pubmed-pp-cli pico --patient \"type 2 diabetes\" --intervention \"SGLT2 inhibitor\" --outcome \"cardiovascular mortality\" --json",
+      "why_it_matters": "Lets a clinician or agent ask a well-formed evidence question and get the matching literature directly.",
+      "group": "Clinical evidence"
+    },
+    {
+      "name": "Two-term co-occurrence lens",
+      "command": "cooccur",
+      "description": "Track how often two terms (e.g. a drug and an adverse effect, or a disease and an intervention) appear together in the literature over time.",
+      "rationale": "Fans esearch across term A, term B, and 'A AND B' per year and computes co-occurrence locally — no single E-utilities call returns an association series.",
+      "example": "pubmed-pp-cli cooccur \"semaglutide\" \"pancreatitis\" --from 2018 --to 2026 --json",
+      "why_it_matters": "Surfaces emerging drug-safety or disease-intervention signals as a time series for the dashboard.",
+      "group": "Local analytics"
+    }
+  ],
+  "auth": {},
+  "narrative": {
+    "display_name": "PubMed",
+    "headline": "Every PubMed E-utility, plus clinical-query refinement, a local article store, and trend/what's-new analytics no other PubMed tool ships.",
+    "value_prop": "pubmed-pp-cli wraps NCBI E-utilities with agent-native JSON on every command, then adds a clinical-evidence layer (clinical, pico), widget-ready article cards (find), and a local SQLite store that powers trend, watch (what's new), and topic landscape. Built for dashboards and agents, not Unix one-liners.",
+    "quickstart": [
+      {
+        "command": "pubmed-pp-cli doctor --dry-run",
+        "comment": "confirm the tool is wired and E-utilities is reachable"
+      },
+      {
+        "command": "pubmed-pp-cli find \"atrial fibrillation anticoagulation\" --limit 5 --json",
+        "comment": "clean article cards for a topic in one call"
+      },
+      {
+        "command": "pubmed-pp-cli clinical \"atrial fibrillation\" --category therapy --scope narrow --json",
+        "comment": "refine to high-specificity therapy evidence"
+      },
+      {
+        "command": "pubmed-pp-cli trend \"CAR-T therapy\" --from 2018 --to 2026 --json",
+        "comment": "publication counts per year for a chart"
+      }
+    ],
+    "troubleshoots": [
+      {
+        "symptom": "HTTP 429 / rate-limited on bursts",
+        "fix": "Set NCBI_API_KEY to raise the limit from 3 to 10 requests/sec; the CLI adds it automatically when present."
+      },
+      {
+        "symptom": "efetch returns XML/text, not JSON",
+        "fix": "efetch has no JSON mode upstream; use 'find --with-abstract' or 'abstract \u003cpmid\u003e' for clean JSON, or 'fetch get' for the raw record."
+      },
+      {
+        "symptom": "clinical returns very few results",
+        "fix": "Use --scope broad for a sensitive search; --scope narrow maximizes specificity and intentionally returns fewer, higher-precision hits."
+      }
+    ],
+    "when_to_use": "Reach for pubmed-pp-cli when an agent or dashboard needs biomedical literature: clinically refined evidence on a disease or intervention, clean article metadata for a query, publication trends, or a 'what's new' feed on a standing topic. It returns structured JSON built for programmatic consumption.",
+    "anti_triggers": [
+      "Do not use it to retrieve full-text article PDFs — E-utilities returns metadata and abstracts, not licensed full text (use the PMC links it surfaces).",
+      "Do not use it for non-PubMed databases beyond what Entrez exposes; it is scoped to PubMed literature.",
+      "Do not use it as a citation manager of record — export to BibTeX/RIS and manage citations in a dedicated tool."
+    ],
+    "recipes": [
+      {
+        "title": "Widget: refined evidence cards",
+        "command": "pubmed-pp-cli clinical \"heart failure\" --category therapy --scope broad --limit 8 --agent --select articles.title,articles.journal,articles.pmid,articles.doi",
+        "explanation": "Narrow a topic to therapy evidence and return only the fields the widget renders."
+      },
+      {
+        "title": "What's new on a standing topic",
+        "command": "pubmed-pp-cli watch \"sepsis biomarkers\" --agent",
+        "explanation": "Only articles not seen on the previous run, for a live 'new research' panel."
+      },
+      {
+        "title": "Trend chart data",
+        "command": "pubmed-pp-cli trend \"long covid\" --from 2020 --to 2026 --agent",
+        "explanation": "Per-year publication counts ready to feed a time-series chart."
+      },
+      {
+        "title": "PICO evidence question",
+        "command": "pubmed-pp-cli pico --patient \"type 2 diabetes\" --intervention \"SGLT2 inhibitor\" --outcome \"cardiovascular mortality\" --agent",
+        "explanation": "Compose a structured EBM question and return the matching literature."
+      }
+    ],
+    "trigger_phrases": [
+      "search pubmed for",
+      "find clinical evidence on",
+      "what's new in the literature on",
+      "publication trend for",
+      "refine this pubmed search",
+      "use pubmed",
+      "run pubmed"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "dir": "\u003ccli-dir\u003e/pubmed-pp-cli",
+  "research_dir": "\u003ccli-dir\u003e/20260717-202347-fa8bd25e",
+  "verdict": "pass",
+  "actors": null,
+  "issues": [
+    "no Apify actor references found, skipping"
+  ]
+}

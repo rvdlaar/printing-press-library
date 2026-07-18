@@ -1,0 +1,212 @@
+{
+  "api_name": "pubmed",
+  "base_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
+  "description": "Every PubMed E-utility, plus clinical-query refinement, a local article store, and trend/what's-new analytics no other PubMed tool ships.",
+  "mcp_ready": "full",
+  "http_transport": "standard",
+  "auth": {
+    "type": "none"
+  },
+  "required_headers": [],
+  "tools": [
+    {
+      "name": "efetch_get",
+      "description": "Fetch full records for PMIDs (efetch returns XML or MEDLINE text, not JSON). Required: id. Optional: db (default: pubmed), rettype (default: abstract), retmode (default: text).",
+      "method": "GET",
+      "path": "/efetch.fcgi",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "db",
+          "type": "string",
+          "location": "query",
+          "description": "Entrez database (default pubmed)"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "location": "query",
+          "description": "Comma-separated PMIDs",
+          "required": true
+        },
+        {
+          "name": "rettype",
+          "type": "string",
+          "location": "query",
+          "description": "Record type: abstract | medline | xml | uilist"
+        },
+        {
+          "name": "retmode",
+          "type": "string",
+          "location": "query",
+          "description": "Response format: text | xml"
+        }
+      ]
+    },
+    {
+      "name": "einfo_get",
+      "description": "List Entrez databases, or describe fields/links for one db. Optional: db, retmode (default: json).",
+      "method": "GET",
+      "path": "/einfo.fcgi",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "db",
+          "type": "string",
+          "location": "query",
+          "description": "Database to describe (omit to list all databases)"
+        },
+        {
+          "name": "retmode",
+          "type": "string",
+          "location": "query",
+          "description": "Response format (json)"
+        }
+      ]
+    },
+    {
+      "name": "elink_get",
+      "description": "Find related articles or links for PMIDs. Required: id. Optional: dbfrom (default: pubmed), db (default: pubmed), cmd (plus 2 more).",
+      "method": "GET",
+      "path": "/elink.fcgi",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "dbfrom",
+          "type": "string",
+          "location": "query",
+          "description": "Source database (default pubmed)"
+        },
+        {
+          "name": "db",
+          "type": "string",
+          "location": "query",
+          "description": "Target database"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "location": "query",
+          "description": "Comma-separated PMIDs",
+          "required": true
+        },
+        {
+          "name": "cmd",
+          "type": "string",
+          "location": "query",
+          "description": "Link command: neighbor | neighbor_score | prlinks | llinks"
+        },
+        {
+          "name": "linkname",
+          "type": "string",
+          "location": "query",
+          "description": "Specific link set, e.g. pubmed_pubmed (related) or pubmed_pmc"
+        },
+        {
+          "name": "retmode",
+          "type": "string",
+          "location": "query",
+          "description": "Response format (json)"
+        }
+      ]
+    },
+    {
+      "name": "esearch_run",
+      "description": "Run a raw PubMed query and return PMIDs + count. Required: term. Optional: db (default: pubmed), retmax (default: 20), retstart (default: 0) (plus 6 more).",
+      "method": "GET",
+      "path": "/esearch.fcgi",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "db",
+          "type": "string",
+          "location": "query",
+          "description": "Entrez database (default pubmed)"
+        },
+        {
+          "name": "term",
+          "type": "string",
+          "location": "query",
+          "description": "PubMed query, e.g. 'atrial fibrillation AND anticoagulation'",
+          "required": true
+        },
+        {
+          "name": "retmax",
+          "type": "int",
+          "location": "query",
+          "description": "Max PMIDs to return (0-10000)"
+        },
+        {
+          "name": "retstart",
+          "type": "int",
+          "location": "query",
+          "description": "Offset into the result set for paging"
+        },
+        {
+          "name": "sort",
+          "type": "string",
+          "location": "query",
+          "description": "Sort order: relevance | pub_date | Author | JournalName"
+        },
+        {
+          "name": "datetype",
+          "type": "string",
+          "location": "query",
+          "description": "Date field to filter on: pdat (publication) | edat (entrez) | mdat (modified)"
+        },
+        {
+          "name": "mindate",
+          "type": "string",
+          "location": "query",
+          "description": "Earliest date, YYYY/MM/DD or YYYY"
+        },
+        {
+          "name": "maxdate",
+          "type": "string",
+          "location": "query",
+          "description": "Latest date, YYYY/MM/DD or YYYY"
+        },
+        {
+          "name": "reldate",
+          "type": "int",
+          "location": "query",
+          "description": "Restrict to items added within the last N days"
+        },
+        {
+          "name": "retmode",
+          "type": "string",
+          "location": "query",
+          "description": "Response format (json)"
+        }
+      ]
+    },
+    {
+      "name": "esummary_get",
+      "description": "Get document summaries for one or more PMIDs. Required: id. Optional: db (default: pubmed), retmode (default: json).",
+      "method": "GET",
+      "path": "/esummary.fcgi",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "db",
+          "type": "string",
+          "location": "query",
+          "description": "Entrez database (default pubmed)"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "location": "query",
+          "description": "Comma-separated PMIDs, e.g. 42467460,40012345",
+          "required": true
+        },
+        {
+          "name": "retmode",
+          "type": "string",
+          "location": "query",
+          "description": "Response format (json)"
+        }
+      ]
+    }
+  ]
+}

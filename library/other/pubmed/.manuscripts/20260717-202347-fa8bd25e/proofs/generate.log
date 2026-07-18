@@ -1,0 +1,13 @@
+info: learn: defaulting self-learning loop on (opt out with learn.disabled: true)
+PASS go mod tidy
+PASS ensure safe golang.org/x/net
+PASS govulncheck ./...
+PASS go vet ./...
+PASS go build ./...
+PASS build runnable binary
+PASS pubmed-pp-cli --help
+PASS pubmed-pp-cli version
+PASS pubmed-pp-cli doctor
+agentcookie: skipping pubmed (cookie-only or no env-var auth)
+Generated pubmed at /Users/rick/printing-press/.runstate/openclawdocker-03c20893/runs/20260717-202347-fa8bd25e/working/pubmed-pp-cli
+Bundled /Users/rick/printing-press/.runstate/openclawdocker-03c20893/runs/20260717-202347-fa8bd25e/working/pubmed-pp-cli/build/pubmed-pp-mcp-darwin-arm64.mcpb
